@@ -5,10 +5,15 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import net.serkanozaydin.hsmnzaydn.data.*
+import net.serkanozaydin.hsmnzaydn.data.pref.PrefHelper
+import net.serkanozaydin.hsmnzaydn.data.pref.PrefHelperImp
+import net.serkanozaydin.hsmnzaydn.data.services.ApiServices
+import net.serkanozaydin.hsmnzaydn.data.services.ApiServicesImp
 import net.serkanozaydin.hsmnzaydn.data.services.CategoryServices.CategoryServices
 import net.serkanozaydin.hsmnzaydn.data.services.CategoryServices.CategoryServicesImp
 import net.serkanozaydin.hsmnzaydn.data.services.CommandServices.CommandServices
 import net.serkanozaydin.hsmnzaydn.data.services.CommandServices.CommandServicesImp
+import net.serkanozaydin.hsmnzaydn.data.services.RetrofitClient
 import javax.inject.Singleton
 
 
@@ -17,14 +22,20 @@ class DataModules {
 
     @Provides
     @Singleton
-    fun provideDataManager(apiServices: ApiServices): DataManager {
-       return DataManagerImp(apiServices)
+    fun provideDataManager(apiServices: ApiServices,prefHelper: PrefHelper): DataManager {
+       return DataManagerImp(apiServices,prefHelper)
     }
 
     @Provides
     @Singleton
-    fun provideApiServices(categoryServices: CategoryServices, commandServices: CommandServices):ApiServices{
-        return ApiServicesImp(categoryServices,commandServices);
+    fun providePrefHelper(context: Context):PrefHelper{
+        return PrefHelperImp(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideApiServices(categoryServices: CategoryServices, commandServices: CommandServices): ApiServices {
+        return ApiServicesImp(categoryServices, commandServices);
     }
 
     @Provides

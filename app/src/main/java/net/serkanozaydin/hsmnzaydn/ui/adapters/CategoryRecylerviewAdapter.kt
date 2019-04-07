@@ -9,13 +9,17 @@ import net.serkanozaydin.hsmnzaydn.R
 import net.serkanozaydin.hsmnzaydn.data.entity.Category
 
 
-class CategoryRecylerviewAdapter(private val myItems: List<Category>, private var myListener: ItemListener?) :
+class CategoryRecylerviewAdapter( private var myListener: ItemListener?) :
     RecyclerView.Adapter<CategoryRecylerviewAdapter.ViewHolder>() {
 
-
+    lateinit var myItems:List<Category>
 
     fun setListener(listener: ItemListener) {
         myListener = listener
+    }
+
+    fun setData(myItems: List<Category>?){
+        this.myItems= myItems!!
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

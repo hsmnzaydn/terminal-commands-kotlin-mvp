@@ -8,6 +8,8 @@ import net.serkanozaydin.hsmnzaydn.data.DataManager
 import net.serkanozaydin.hsmnzaydn.ui.CategoryActivity.CategoryActivityMvpPresenter
 import net.serkanozaydin.hsmnzaydn.ui.CategoryActivity.CategoryActivityMvpView
 import net.serkanozaydin.hsmnzaydn.ui.CategoryActivity.CategoryActivityPresenter
+import net.serkanozaydin.hsmnzaydn.ui.CommandListActivity.CommandListActivityMvpView
+import net.serkanozaydin.hsmnzaydn.ui.CommandListActivity.CommandListActivityPresenter
 import net.serkanozaydin.hsmnzaydn.ui.base.BasePresenter
 import net.serkanozaydin.hsmnzaydn.ui.base.MvpView
 
@@ -38,4 +40,9 @@ class PresenterModules(app: Application) {
    fun provideCategoryActivityMvpPresenter(dataManager: DataManager):CategoryActivityMvpPresenter<CategoryActivityMvpView>{
        return CategoryActivityPresenter(dataManager);
    }
+
+    @Provides
+    fun provideCommandListActivityMvpPresenter(dataManager: DataManager):CommandListActivityPresenter<CommandListActivityMvpView>{
+        return CommandListActivityPresenter(dataManager)
+    }
 }
