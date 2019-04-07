@@ -2,6 +2,7 @@ package net.serkanozaydin.hsmnzaydn.data.services.CategoryServices
 
 
 import net.serkanozaydin.hsmnzaydn.data.Callback
+import net.serkanozaydin.hsmnzaydn.data.RetrofitClient
 import net.serkanozaydin.hsmnzaydn.data.Services
 import net.serkanozaydin.hsmnzaydn.data.entity.Category
 import retrofit2.Call
@@ -14,7 +15,7 @@ class CategoryServicesImp : CategoryServices {
 
 
     @Inject
-    constructor(retrofitClient: net.serkanozaydin.hsmnzaydn.RetrofitClient){
+    constructor(retrofitClient: RetrofitClient){
         apiServices = retrofitClient.getClient().create(Services::class.java)
 
     }

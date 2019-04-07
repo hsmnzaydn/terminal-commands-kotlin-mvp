@@ -4,10 +4,7 @@ import android.content.Context
 
 import dagger.Module
 import dagger.Provides
-import net.serkanozaydin.hsmnzaydn.data.ApiServices
-import net.serkanozaydin.hsmnzaydn.data.ApiServicesImp
-import net.serkanozaydin.hsmnzaydn.data.DataManager
-import net.serkanozaydin.hsmnzaydn.data.DataManagerImp
+import net.serkanozaydin.hsmnzaydn.data.*
 import net.serkanozaydin.hsmnzaydn.data.services.CategoryServices.CategoryServices
 import net.serkanozaydin.hsmnzaydn.data.services.CategoryServices.CategoryServicesImp
 import net.serkanozaydin.hsmnzaydn.data.services.CommandServices.CommandServices
@@ -32,19 +29,19 @@ class DataModules {
 
     @Provides
     @Singleton
-    fun provideCommandServices(retrofitClient: net.serkanozaydin.hsmnzaydn.RetrofitClient):CommandServices{
+    fun provideCommandServices(retrofitClient: RetrofitClient):CommandServices{
         return CommandServicesImp(retrofitClient);
     }
 
     @Provides
     @Singleton
-    fun provideCategoryServices(retrofitClient: net.serkanozaydin.hsmnzaydn.RetrofitClient):CategoryServices{
+    fun provideCategoryServices(retrofitClient: RetrofitClient):CategoryServices{
         return CategoryServicesImp(retrofitClient);
     }
 
     @Provides
     @Singleton
-    fun provideRetrofitClient(context: Context): net.serkanozaydin.hsmnzaydn.RetrofitClient {
-        return net.serkanozaydin.hsmnzaydn.RetrofitClient(context)
+    fun provideRetrofitClient(context: Context): RetrofitClient {
+        return RetrofitClient(context)
     }
 }

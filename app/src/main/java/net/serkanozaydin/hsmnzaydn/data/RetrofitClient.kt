@@ -1,4 +1,4 @@
-package net.serkanozaydin.hsmnzaydn
+package net.serkanozaydin.hsmnzaydn.data
 
 import android.content.Context
 import net.serkanozaydin.hsmnzaydn.Utility.BASE_SERVER_URL

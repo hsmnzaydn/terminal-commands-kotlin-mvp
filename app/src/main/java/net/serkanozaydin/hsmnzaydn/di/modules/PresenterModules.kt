@@ -4,17 +4,23 @@ import android.app.Application
 import android.content.Context
 import dagger.Module
 import dagger.Provides
+import net.serkanozaydin.hsmnzaydn.data.DataManager
+import net.serkanozaydin.hsmnzaydn.ui.CategoryActivity.CategoryActivityMvpPresenter
+import net.serkanozaydin.hsmnzaydn.ui.CategoryActivity.CategoryActivityMvpView
+import net.serkanozaydin.hsmnzaydn.ui.CategoryActivity.CategoryActivityPresenter
+import net.serkanozaydin.hsmnzaydn.ui.base.BasePresenter
+import net.serkanozaydin.hsmnzaydn.ui.base.MvpView
+
+
 import javax.inject.Singleton
 
-
 @Module
-class PresenterModules {
+class PresenterModules(app: Application) {
 
-    lateinit var context: Context
+    private val context: Context
 
-    constructor(app:Application){
+    init {
         this.context = app
-
     }
 
     @Provides
@@ -23,4 +29,13 @@ class PresenterModules {
         return context
     }
 
+    @Provides
+    fun provideBasePresenter(dataManager: DataManager): BasePresenter<MvpView> {
+        return BasePresenter(dataManager)
+    }
+
+   @Provides
+   fun provideCategoryActivityMvpPresenter(dataManager: DataManager):CategoryActivityMvpPresenter<CategoryActivityMvpView>{
+       return CategoryActivityPresenter(dataManager);
+   }
 }

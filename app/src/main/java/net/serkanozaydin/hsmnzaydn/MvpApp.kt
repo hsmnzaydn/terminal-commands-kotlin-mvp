@@ -1,7 +1,6 @@
 package net.serkanozaydin.hsmnzaydn
 
 import android.app.Application
-import dagger.internal.DaggerCollections
 import net.serkanozaydin.hsmnzaydn.di.components.DaggerViewComponents
 
 import net.serkanozaydin.hsmnzaydn.di.components.ViewComponents
