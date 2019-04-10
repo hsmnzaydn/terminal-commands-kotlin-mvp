@@ -1,5 +1,6 @@
 package net.serkanozaydin.hsmnzaydn.ui.CategoryActivity
 
+import android.util.Log
 import net.serkanozaydin.hsmnzaydn.R
 import net.serkanozaydin.hsmnzaydn.data.ServiceCallback
 import net.serkanozaydin.hsmnzaydn.data.DataManager

@@ -7,6 +7,7 @@ import net.serkanozaydin.hsmnzaydn.data.entity.Command
 import net.serkanozaydin.hsmnzaydn.data.entity.Language
 import net.serkanozaydin.hsmnzaydn.data.pref.PrefHelper
 import net.serkanozaydin.hsmnzaydn.data.services.ApiServices
+import java.util.*
 import javax.inject.Inject
 
 class DataManagerImp : DataManager {
@@ -48,12 +49,12 @@ class DataManagerImp : DataManager {
     }
 
     override fun saveCommand(title: String, description: String) {
-        var command=Command(1,id = "",description = description,title = title);
+        var command=Command(Random().nextInt(), id = "",description = description,title = title);
         dbHelper.addCommand(command)
     }
 
     override fun getCommandFromDb(title: String, description: String) {
-        var command=Command(1,id = "",description = description,title = title);
+        var command=Command(Random().nextInt(),id = "",description = description,title = title);
         dbHelper.addCommand(command)
 
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

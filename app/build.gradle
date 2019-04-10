@@ -50,9 +50,13 @@ dependencies {
     implementation 'javax.inject:javax.inject:1'
 
 //room
-    implementation "android.arch.persistence.room:runtime:2.1.0-alpha06"
-    annotationProcessor "android.arch.persistence.room:compiler:2.1.0-alpha06"
-    testImplementation "android.arch.persistence.room:testing:2.1.0-alpha06"
+
+    implementation "android.arch.persistence.room:runtime:1.0.0"
+    kapt "android.arch.persistence.room:compiler:1.0.0"
+
+    //Couritunes
+    implementation "org.jetbrains.anko:anko:0.10.8"
+
 
 
 }

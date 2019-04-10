@@ -70,13 +70,13 @@ class DataModules {
 
     @Provides
     @Singleton
-    fun provideCommandDB(context: Context):CommandDbImp{
+    fun provideCommandDB(context: Context):CommandDb{
         return CommandDbImp(context)
     }
 
     @Provides
     @Singleton
-    fun provideDBServices(commandDB:CommandDb):DBServicesImp{
+    fun provideDBServices(commandDB:CommandDb):DBServices{
         return DBServicesImp(commandDB)
     }
 }
