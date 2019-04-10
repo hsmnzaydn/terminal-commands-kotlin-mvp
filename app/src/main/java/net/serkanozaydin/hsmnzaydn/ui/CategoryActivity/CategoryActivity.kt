@@ -1,5 +1,6 @@
 package net.serkanozaydin.hsmnzaydn.ui.CategoryActivity
 
+import android.app.SearchManager
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -7,24 +8,33 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.LinearLayout
+import android.widget.SearchView
 import kotlinx.android.synthetic.main.activity_navigation.*
 import kotlinx.android.synthetic.main.app_bar_navigation.*
 import kotlinx.android.synthetic.main.content_navigation.*
 import net.serkanozaydin.hsmnzaydn.MvpApp
-import net.serkanozaydin.hsmnzaydn.R
 import net.serkanozaydin.hsmnzaydn.Utility.BUNDLE_CATEGORY_ID
 import net.serkanozaydin.hsmnzaydn.data.entity.Category
 import net.serkanozaydin.hsmnzaydn.ui.CommandListActivity.CommandListActivity
 import net.serkanozaydin.hsmnzaydn.ui.adapters.CategoryRecylerviewAdapter
 import net.serkanozaydin.hsmnzaydn.ui.base.BaseActivity
 import javax.inject.Inject
+import net.serkanozaydin.hsmnzaydn.R
 
-class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener,CategoryActivityMvpView  {
+import android.content.Context
+import net.serkanozaydin.hsmnzaydn.data.entity.Command
+import net.serkanozaydin.hsmnzaydn.ui.adapters.CommandRecylerviewAdapter
+
+
+class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener,CategoryActivityMvpView,SearchView.OnQueryTextListener  {
+
 
     lateinit var adapter: CategoryRecylerviewAdapter
+    lateinit var commandAdapter:CommandRecylerviewAdapter
     lateinit var changeClass: Intent
 
 
@@ -65,12 +75,27 @@ class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
             }
 
         })
+
+        commandAdapter= CommandRecylerviewAdapter(object : CommandRecylerviewAdapter.ItemListener{
+            override fun onItemClick(item: Command) {
+
+            }
+
+        })
+
+
+
     }
 
     override fun loadDataToList(response: List<Category>?) {
         adapter.setData(response)
         content_navigation_recylerview.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL,false)
         content_navigation_recylerview.adapter=adapter
+    }
+
+    override fun loadDataCommandList(commandList: List<Command>) {
+        commandAdapter.setData(commandList)
+        content_navigation_recylerview.adapter=commandAdapter
     }
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
@@ -82,17 +107,28 @@ class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
+
+        // Associate searchable configuration with the SearchView
+
+
         menuInflater.inflate(R.menu.navigation, menu)
+
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchView = menu.findItem(R.id.action_search).actionView as SearchView ??
+        searchView!!.setSearchableInfo(
+            searchManager.getSearchableInfo(componentName)
+        )
+        searchView.setOnQueryTextListener(this)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         when (item.itemId) {
             R.id.action_settings -> return true
+
             else -> return super.onOptionsItemSelected(item)
+
         }
     }
 
@@ -122,4 +158,18 @@ class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+
+        return false
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        if(newText!!.length==3){
+            presenter.searchInCommands(newText)
+        }
+
+        return false
+    }
+
 }
