@@ -1,6 +1,8 @@
 package net.serkanozaydin.hsmnzaydn.data.services
 
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import net.serkanozaydin.hsmnzaydn.Utility.BASE_SERVER_URL
 import net.serkanozaydin.hsmnzaydn.Utility.connectTimeOut
 import net.serkanozaydin.hsmnzaydn.Utility.readTimeOut
@@ -33,8 +35,16 @@ class RetrofitClient {
             .cache(cache)
             .addInterceptor(object : Interceptor {
                 override fun intercept(chain: Interceptor.Chain): Response {
+
                     var request: Request =
                         chain.request().newBuilder().addHeader("app-language", prefHelper.getLanguage()).build()
+                    if (!hasNetwork(context)!!) {
+                        val maxStale = 60 * 60 * 24 * 28
+                        return chain.proceed(chain.request().newBuilder()
+                            .header("Cache-Control", "public, only-if-cached, max-stale=$maxStale")
+                            .build())
+
+                    }
                     return chain.proceed(request)
                 }
 
@@ -45,5 +55,14 @@ class RetrofitClient {
         return Retrofit.Builder().baseUrl(BASE_SERVER_URL).client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create()).build()
 
+    }
+
+    fun hasNetwork(context: Context): Boolean? {
+        var isConnected: Boolean? = false // Initial Value
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
+        if (activeNetwork != null && activeNetwork.isConnected)
+            isConnected = true
+        return isConnected
     }
 }
