@@ -13,6 +13,8 @@ import net.serkanozaydin.hsmnzaydn.data.services.CategoryServices.CategoryServic
 import net.serkanozaydin.hsmnzaydn.data.services.CategoryServices.CategoryServicesImp
 import net.serkanozaydin.hsmnzaydn.data.services.CommandServices.CommandServices
 import net.serkanozaydin.hsmnzaydn.data.services.CommandServices.CommandServicesImp
+import net.serkanozaydin.hsmnzaydn.data.services.LanguageServices.LanguageServices
+import net.serkanozaydin.hsmnzaydn.data.services.LanguageServices.LanguageServicesImp
 import net.serkanozaydin.hsmnzaydn.data.services.RetrofitClient
 import javax.inject.Singleton
 
@@ -34,8 +36,8 @@ class DataModules {
 
     @Provides
     @Singleton
-    fun provideApiServices(categoryServices: CategoryServices, commandServices: CommandServices): ApiServices {
-        return ApiServicesImp(categoryServices, commandServices);
+    fun provideApiServices(categoryServices: CategoryServices, commandServices: CommandServices,languageServices: LanguageServices): ApiServices {
+        return ApiServicesImp(categoryServices, commandServices,languageServices);
     }
 
     @Provides
@@ -52,7 +54,13 @@ class DataModules {
 
     @Provides
     @Singleton
-    fun provideRetrofitClient(context: Context): RetrofitClient {
-        return RetrofitClient(context)
+    fun provideRetrofitClient(context: Context,prefHelper: PrefHelper): RetrofitClient {
+        return RetrofitClient(context,prefHelper)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLanguageServices(retrofitClient: RetrofitClient):LanguageServices{
+        return LanguageServicesImp(retrofitClient)
     }
 }

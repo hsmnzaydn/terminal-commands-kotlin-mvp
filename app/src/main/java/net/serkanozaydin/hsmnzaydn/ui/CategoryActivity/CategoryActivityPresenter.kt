@@ -1,6 +1,6 @@
 package net.serkanozaydin.hsmnzaydn.ui.CategoryActivity
 
-import net.serkanozaydin.hsmnzaydn.data.Callback
+import net.serkanozaydin.hsmnzaydn.data.ServiceCallback
 import net.serkanozaydin.hsmnzaydn.data.DataManager
 import net.serkanozaydin.hsmnzaydn.data.entity.Category
 import net.serkanozaydin.hsmnzaydn.ui.base.BasePresenter
@@ -9,7 +9,7 @@ class CategoryActivityPresenter<V : CategoryActivityMvpView>  constructor(dataMa
     BasePresenter<V>(dataManager), CategoryActivityMvpPresenter<V> {
     override fun getCategories() {
         mvpView.showLoading()
-        dataManager.getCategories(object : Callback<List<Category>>{
+        dataManager.getCategories(object : ServiceCallback<List<Category>>{
             override fun onSuccess(response: List<Category>?) {
                 mvpView.loadDataToList(response)
                 mvpView.hideLoading()
