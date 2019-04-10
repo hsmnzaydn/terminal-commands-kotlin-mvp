@@ -36,4 +36,13 @@ class DataManagerImp : DataManager {
         apiServices.getLanguages(serviceCallback)
     }
 
+    override fun getLanguage(): String {
+        return prefHelper.getLanguage()
+    }
+
+    override fun saveLanguage(language: String) {
+        prefHelper.saveLanguage(language)
+    }
+
+
 }

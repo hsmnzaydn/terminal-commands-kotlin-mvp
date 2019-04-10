@@ -26,6 +26,7 @@ import javax.inject.Inject
 import net.serkanozaydin.hsmnzaydn.R
 
 import android.content.Context
+import net.serkanozaydin.hsmnzaydn.Utility.BUNDLE_CATEGORY_NAME
 import net.serkanozaydin.hsmnzaydn.data.entity.Command
 import net.serkanozaydin.hsmnzaydn.ui.adapters.CommandRecylerviewAdapter
 
@@ -71,6 +72,7 @@ class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
             override fun onItemClick(item: Category) {
                 changeClass = Intent(this@CategoryActivity, CommandListActivity::class.java)
                 changeClass.putExtra(BUNDLE_CATEGORY_ID, item.id)
+                changeClass.putExtra(BUNDLE_CATEGORY_NAME, item.title)
                 startActivity(changeClass)
             }
 
@@ -126,7 +128,10 @@ class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            R.id.action_settings -> return true
+            R.id.action_settings -> {
+                presenter.showLanguageDialog()
+                return true
+            }
 
             else -> return super.onOptionsItemSelected(item)
 

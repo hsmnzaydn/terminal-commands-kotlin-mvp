@@ -10,4 +10,7 @@ interface DataManager {
     fun getCommandsOfCategory(categoryId:String, serviceCallback: ServiceCallback<List<Command>>)
     fun getCommand(query:String, serviceCallback: ServiceCallback<List<Command>>)
     fun getLanguages(serviceCallback: ServiceCallback<List<Language>>)
+
+    fun saveLanguage(language: String)
+    fun getLanguage():String
 }

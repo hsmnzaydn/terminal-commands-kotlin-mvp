@@ -11,4 +11,7 @@
     <!-- Menu -->
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
+
+    <!-- Dailog -->
+    <string name="dialog_select_language">Select Language</string>
 </resources>

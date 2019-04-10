@@ -8,7 +8,6 @@ import retrofit2.http.*
 
 interface Services {
 
-    @Headers("Cache-Control: public, max-stale=604800")
     @GET("categories")
     fun getCategories(): Call<List<Category>>
 

@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 import net.serkanozaydin.hsmnzaydn.MvpApp
 import net.serkanozaydin.hsmnzaydn.R
 import net.serkanozaydin.hsmnzaydn.Utility.BUNDLE_CATEGORY_ID
+import net.serkanozaydin.hsmnzaydn.Utility.BUNDLE_CATEGORY_NAME
 import net.serkanozaydin.hsmnzaydn.data.entity.Command
 import net.serkanozaydin.hsmnzaydn.ui.adapters.CommandRecylerviewAdapter
 import net.serkanozaydin.hsmnzaydn.ui.base.BaseActivity
@@ -33,6 +34,8 @@ class CommandListActivity : BaseActivity(), CommandListActivityMvpView {
         var bundle: Bundle?? = intent.extras
 
         var categoryId = bundle!!.getString(BUNDLE_CATEGORY_ID, "")
+        var categoryName=bundle.getString(BUNDLE_CATEGORY_NAME,"")
+        setTitle(categoryName)
         presenter.getCommandsOfCategory(categoryId)
 
         adapter= CommandRecylerviewAdapter(object : CommandRecylerviewAdapter.ItemListener{

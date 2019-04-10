@@ -71,5 +71,22 @@ abstract class BaseActivity : AppCompatActivity(), MvpView {
         return false
     }
 
+    override fun showListDialog(itemList: List<String>?, title: String, listSelectItem: ListSelectItem<Int>) {
+
+        if (itemList != null) {
+            val builder = androidx.appcompat.app.AlertDialog.Builder(this@BaseActivity)
+            builder.setTitle(title)
+
+
+           var stockArr = itemList.toTypedArray<String>()
+
+            builder.setItems(
+                stockArr
+            ) { dialog, which -> listSelectItem.selectedItem(which) }
+
+            val dialog = builder.create()
+            dialog.show()
+        }
+    }
 
 }

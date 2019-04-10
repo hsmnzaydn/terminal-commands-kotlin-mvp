@@ -18,4 +18,7 @@ interface MvpView {
      fun hideSystemUI()
 
      fun getActivity(): Activity
+
+      fun showListDialog(itemList: List<String>?, title: String, listSelectItem: ListSelectItem<Int>)
+
 }
