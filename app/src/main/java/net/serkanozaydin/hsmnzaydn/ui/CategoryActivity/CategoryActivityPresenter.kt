@@ -14,14 +14,16 @@ class CategoryActivityPresenter<V : CategoryActivityMvpView> constructor(dataMan
 
 
 
-    lateinit var commandList: List<Command>
+     var commandList: List<Command> = ArrayList<Command>()
     var selectLanguageId:Int = 0
 
     override fun searchInCommands(newText: String) {
         mvpView.showLoading()
         dataManager.getCommand(newText, object : ServiceCallback<List<Command>> {
             override fun onSuccess(response: List<Command>?) {
-                commandList = response!!
+                if(response != null){
+                    commandList = response!!
+                }
                 mvpView.loadDataCommandList(commandList)
                 mvpView.hideLoading()
             }

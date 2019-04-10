@@ -14,14 +14,16 @@ import net.serkanozaydin.hsmnzaydn.data.entity.Command
 class CommandRecylerviewAdapter( private var myListener: ItemListener?) :
     RecyclerView.Adapter<CommandRecylerviewAdapter.ViewHolder>() {
 
-    lateinit var myItems:List<Command>
+    var myItems:List<Command>?= ArrayList<Command>()
 
     fun setListener(listener: ItemListener) {
         myListener = listener
     }
 
     fun setData(myItems: List<Command>?){
-        this.myItems= myItems!!
+        if(myItems != null){
+            this.myItems= myItems
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,11 +34,11 @@ class CommandRecylerviewAdapter( private var myListener: ItemListener?) :
     }
 
     override fun getItemCount(): Int {
-        return myItems.size
+        return myItems!!.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.setData(myItems[position])
+        holder.setData(myItems?.get(position))
     }
 
     interface ItemListener {
@@ -54,10 +56,10 @@ class CommandRecylerviewAdapter( private var myListener: ItemListener?) :
             // TODO instantiate/assign view members
         }
 
-        fun setData(item: Command) {
+        fun setData(item: Command?) {
             this.item = item
-            itemView.findViewById<AppCompatTextView>(R.id.row_command_command_title_text_view).text=item.title
-            itemView.findViewById<AppCompatTextView>(R.id.row_command_description_text_view).text=item.description
+            itemView.findViewById<AppCompatTextView>(R.id.row_command_command_title_text_view).text= item!!.title
+            itemView.findViewById<AppCompatTextView>(R.id.row_command_description_text_view).text=item!!.description
             // TODO set data to view
         }
 
