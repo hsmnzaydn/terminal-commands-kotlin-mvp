@@ -5,6 +5,10 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import net.serkanozaydin.hsmnzaydn.data.*
+import net.serkanozaydin.hsmnzaydn.data.db.Command.CommandDb
+import net.serkanozaydin.hsmnzaydn.data.db.Command.CommandDbImp
+import net.serkanozaydin.hsmnzaydn.data.db.DBServices
+import net.serkanozaydin.hsmnzaydn.data.db.DBServicesImp
 import net.serkanozaydin.hsmnzaydn.data.pref.PrefHelper
 import net.serkanozaydin.hsmnzaydn.data.pref.PrefHelperImp
 import net.serkanozaydin.hsmnzaydn.data.services.ApiServices
@@ -24,8 +28,8 @@ class DataModules {
 
     @Provides
     @Singleton
-    fun provideDataManager(apiServices: ApiServices,prefHelper: PrefHelper): DataManager {
-       return DataManagerImp(apiServices,prefHelper)
+    fun provideDataManager(apiServices: ApiServices,prefHelper: PrefHelper,db: DBServices): DataManager {
+       return DataManagerImp(apiServices,prefHelper,db)
     }
 
     @Provides
@@ -62,5 +66,17 @@ class DataModules {
     @Singleton
     fun provideLanguageServices(retrofitClient: RetrofitClient):LanguageServices{
         return LanguageServicesImp(retrofitClient)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCommandDB(context: Context):CommandDbImp{
+        return CommandDbImp(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDBServices(commandDB:CommandDb):DBServicesImp{
+        return DBServicesImp(commandDB)
     }
 }

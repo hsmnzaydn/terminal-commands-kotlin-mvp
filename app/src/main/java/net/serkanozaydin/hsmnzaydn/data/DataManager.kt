@@ -13,4 +13,8 @@ interface DataManager {
 
     fun saveLanguage(language: String)
     fun getLanguage():String
+
+    fun saveCommand(title:String,description:String)
+    fun getCommandFromDb(title: String,description: String)
+    fun getAllCommandFromDb(callback: ServiceCallback<List<Command>>)
 }

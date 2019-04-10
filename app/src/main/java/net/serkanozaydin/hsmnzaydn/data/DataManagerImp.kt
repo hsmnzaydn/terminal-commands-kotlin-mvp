@@ -1,5 +1,7 @@
 package net.serkanozaydin.hsmnzaydn.data
 
+import net.serkanozaydin.hsmnzaydn.data.db.DBServices
+import net.serkanozaydin.hsmnzaydn.data.db.DBServicesImp
 import net.serkanozaydin.hsmnzaydn.data.entity.Category
 import net.serkanozaydin.hsmnzaydn.data.entity.Command
 import net.serkanozaydin.hsmnzaydn.data.entity.Language
@@ -12,11 +14,12 @@ class DataManagerImp : DataManager {
 
     lateinit var apiServices: ApiServices
     lateinit var prefHelper: PrefHelper
-
+    lateinit var dbHelper: DBServices
     @Inject
-    constructor(apiServices: ApiServices, prefHelper: PrefHelper) {
+    constructor(apiServices: ApiServices, prefHelper: PrefHelper,dbHelper: DBServices) {
         this.apiServices = apiServices
         this.prefHelper = prefHelper
+        this.dbHelper=dbHelper
     }
 
 
@@ -42,6 +45,22 @@ class DataManagerImp : DataManager {
 
     override fun saveLanguage(language: String) {
         prefHelper.saveLanguage(language)
+    }
+
+    override fun saveCommand(title: String, description: String) {
+        var command=Command(1,id = "",description = description,title = title);
+        dbHelper.addCommand(command)
+    }
+
+    override fun getCommandFromDb(title: String, description: String) {
+        var command=Command(1,id = "",description = description,title = title);
+        dbHelper.addCommand(command)
+
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getAllCommandFromDb(callback: ServiceCallback<List<Command>>) {
+        dbHelper.getAllCommands(callback)
     }
 
 

@@ -8,7 +8,7 @@ import net.serkanozaydin.hsmnzaydn.data.db.CommandDao
 import net.serkanozaydin.hsmnzaydn.data.entity.Command
 import javax.inject.Inject
 
-class CommandDbImp :CommandDb{
+class CommandDbImp:CommandDb{
 
     lateinit var db:AppDatabase
 
