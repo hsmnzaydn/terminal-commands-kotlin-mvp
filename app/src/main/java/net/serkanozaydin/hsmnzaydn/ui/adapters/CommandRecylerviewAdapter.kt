@@ -1,7 +1,7 @@
 package net.serkanozaydin.hsmnzaydn.ui.adapters
 
-import android.support.v7.widget.AppCompatTextView
-import android.support.v7.widget.RecyclerView
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +27,7 @@ class CommandRecylerviewAdapter( private var myListener: ItemListener?) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.row_category, parent, false)
+                .inflate(R.layout.row_command, parent, false)
         ) // TODO
     }
 

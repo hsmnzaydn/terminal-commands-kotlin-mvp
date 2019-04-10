@@ -3,11 +3,11 @@ package net.serkanozaydin.hsmnzaydn.ui.CategoryActivity
 import android.app.SearchManager
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.design.widget.NavigationView
-import android.support.v4.view.GravityCompat
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.navigation.NavigationView
+import androidx.core.view.GravityCompat
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -30,17 +30,17 @@ import net.serkanozaydin.hsmnzaydn.data.entity.Command
 import net.serkanozaydin.hsmnzaydn.ui.adapters.CommandRecylerviewAdapter
 
 
-class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener,CategoryActivityMvpView,SearchView.OnQueryTextListener  {
+class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener, CategoryActivityMvpView,
+    SearchView.OnQueryTextListener {
 
 
     lateinit var adapter: CategoryRecylerviewAdapter
-    lateinit var commandAdapter:CommandRecylerviewAdapter
+    lateinit var commandAdapter: CommandRecylerviewAdapter
     lateinit var changeClass: Intent
 
 
     @Inject
     lateinit var presenter: CategoryActivityMvpPresenter<CategoryActivityMvpView>
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,16 +67,16 @@ class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
         presenter.getCategories()
 
 
-        adapter= CategoryRecylerviewAdapter(object: CategoryRecylerviewAdapter.ItemListener{
+        adapter = CategoryRecylerviewAdapter(object : CategoryRecylerviewAdapter.ItemListener {
             override fun onItemClick(item: Category) {
-                changeClass= Intent(this@CategoryActivity, CommandListActivity::class.java)
-                changeClass.putExtra(BUNDLE_CATEGORY_ID,item.id)
+                changeClass = Intent(this@CategoryActivity, CommandListActivity::class.java)
+                changeClass.putExtra(BUNDLE_CATEGORY_ID, item.id)
                 startActivity(changeClass)
             }
 
         })
 
-        commandAdapter= CommandRecylerviewAdapter(object : CommandRecylerviewAdapter.ItemListener{
+        commandAdapter = CommandRecylerviewAdapter(object : CommandRecylerviewAdapter.ItemListener {
             override fun onItemClick(item: Command) {
 
             }
@@ -84,19 +84,20 @@ class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
         })
 
 
-
     }
 
     override fun loadDataToList(response: List<Category>?) {
         adapter.setData(response)
-        content_navigation_recylerview.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL,false)
-        content_navigation_recylerview.adapter=adapter
+        content_navigation_recylerview.layoutManager =
+            LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+        content_navigation_recylerview.adapter = adapter
     }
 
     override fun loadDataCommandList(commandList: List<Command>) {
         commandAdapter.setData(commandList)
-        content_navigation_recylerview.adapter=commandAdapter
+        content_navigation_recylerview.adapter = commandAdapter
     }
+
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -114,7 +115,7 @@ class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
         menuInflater.inflate(R.menu.navigation, menu)
 
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        val searchView = menu.findItem(R.id.action_search).actionView as SearchView ??
+        val searchView = menu.findItem(R.id.action_search).actionView as SearchView??
         searchView!!.setSearchableInfo(
             searchManager.getSearchableInfo(componentName)
         )
@@ -165,8 +166,12 @@ class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        if(newText!!.length==3){
+        if (newText!!.length == 3) {
             presenter.searchInCommands(newText)
+        } else if (newText!!.length < 2) {
+            presenter.getCategories()
+        } else if (newText.length > 3) {
+            presenter.filterInCommandList(newText)
         }
 
         return false

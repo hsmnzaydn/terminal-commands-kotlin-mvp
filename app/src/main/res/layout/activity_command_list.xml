@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.CommandListActivity.CommandListActivity">
+        android:orientation="vertical"
+        tools:context=".ui.CommandListActivity.CommandListActivity"
+android:background="@color/colorPrimaryDark">
 
-</android.support.constraint.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView android:layout_width="match_parent"
+                                               android:layout_height="match_parent"
+    android:id="@+id/activity_command_list_recylerview"></androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>
