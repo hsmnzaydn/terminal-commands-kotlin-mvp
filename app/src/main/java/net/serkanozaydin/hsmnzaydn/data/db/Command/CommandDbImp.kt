@@ -31,11 +31,11 @@ class CommandDbImp : CommandDb {
     }
 
     override fun deleteCommand(command: Command) {
-        db.userDao().delete(command)
+        doAsync { db.userDao().delete(command) }
     }
 
     override fun getAllCommands(callback: ServiceCallback<List<Command>>) {
-      doAsync {  callback.onSuccess(db.userDao().getAllCommand())}
+        doAsync { callback.onSuccess(db.userDao().getAllCommand()) }
     }
 
 

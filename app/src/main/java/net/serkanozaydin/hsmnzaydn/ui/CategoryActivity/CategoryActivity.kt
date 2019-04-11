@@ -1,5 +1,6 @@
 package net.serkanozaydin.hsmnzaydn.ui.CategoryActivity
 
+import android.app.AlertDialog
 import android.app.SearchManager
 import android.content.Intent
 import android.os.Bundle
@@ -26,8 +27,14 @@ import javax.inject.Inject
 import net.serkanozaydin.hsmnzaydn.R
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.view.View
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
 import net.serkanozaydin.hsmnzaydn.Utility.BUNDLE_CATEGORY_NAME
 import net.serkanozaydin.hsmnzaydn.data.entity.Command
+import net.serkanozaydin.hsmnzaydn.ui.MyFavouriteCommandListActivity.MyFavouriteCommandListActivity
 import net.serkanozaydin.hsmnzaydn.ui.adapters.CommandRecylerviewAdapter
 
 
@@ -50,8 +57,29 @@ class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            val dialogBuilder = AlertDialog.Builder(this@CategoryActivity)
+            val inflater = layoutInflater
+            val dialogView = inflater.inflate(R.layout.dialog_enter_command, null)
+            dialogBuilder.setView(dialogView)
+            var commandTitle = dialogView.findViewById<TextInputEditText>(R.id.dialog_enter_command_title_edit_text)
+            var commandDescription =
+                dialogView.findViewById<TextInputEditText>(R.id.dialog_enter_command_description_edit_text)
+            var saveButton = dialogView.findViewById<MaterialButton>(R.id.dialog_enter_command_save_button)
+
+
+
+            val alertDialog = dialogBuilder.create()
+            alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+            alertDialog.show()
+
+            saveButton.setOnClickListener {
+                presenter.saveCommand(commandTitle.text.toString(),commandDescription.text.toString())
+                alertDialog.dismiss()
+            }
+
+
+
         }
 
         val toggle = ActionBarDrawerToggle(
@@ -142,7 +170,8 @@ class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_camera -> {
-                // Handle the camera action
+                var intent=Intent(this@CategoryActivity,MyFavouriteCommandListActivity::class.java)
+                startActivity(intent)
             }
             R.id.nav_gallery -> {
 

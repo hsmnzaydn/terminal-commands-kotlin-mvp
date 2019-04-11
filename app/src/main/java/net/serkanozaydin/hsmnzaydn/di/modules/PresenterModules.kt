@@ -10,6 +10,9 @@ import net.serkanozaydin.hsmnzaydn.ui.CategoryActivity.CategoryActivityMvpView
 import net.serkanozaydin.hsmnzaydn.ui.CategoryActivity.CategoryActivityPresenter
 import net.serkanozaydin.hsmnzaydn.ui.CommandListActivity.CommandListActivityMvpView
 import net.serkanozaydin.hsmnzaydn.ui.CommandListActivity.CommandListActivityPresenter
+import net.serkanozaydin.hsmnzaydn.ui.MyFavouriteCommandListActivity.MyFavouriteCommandListActivityMvpPresenter
+import net.serkanozaydin.hsmnzaydn.ui.MyFavouriteCommandListActivity.MyFavouriteCommandListActivityMvpView
+import net.serkanozaydin.hsmnzaydn.ui.MyFavouriteCommandListActivity.MyFavouriteCommandListActivityPresenter
 import net.serkanozaydin.hsmnzaydn.ui.base.BasePresenter
 import net.serkanozaydin.hsmnzaydn.ui.base.MvpView
 
@@ -44,5 +47,10 @@ class PresenterModules(app: Application) {
     @Provides
     fun provideCommandListActivityMvpPresenter(dataManager: DataManager):CommandListActivityPresenter<CommandListActivityMvpView>{
         return CommandListActivityPresenter(dataManager)
+    }
+
+    @Provides
+    fun provideMyFavouriteCommandListActivityMvpPresenter(dataManager: DataManager):MyFavouriteCommandListActivityMvpPresenter<MyFavouriteCommandListActivityMvpView>{
+        return MyFavouriteCommandListActivityPresenter(dataManager)
     }
 }

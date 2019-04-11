@@ -53,9 +53,9 @@ class DataManagerImp : DataManager {
         dbHelper.addCommand(command)
     }
 
-    override fun getCommandFromDb(title: String, description: String) {
-        var command=Command(Random().nextInt(),id = "",description = description,title = title);
-        dbHelper.addCommand(command)
+    override fun deleteCommandFromDb(id:Int,title: String, description: String) {
+        var command=Command(id,id = "",description = description,title = title);
+        dbHelper.deleteCommand(command)
 
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

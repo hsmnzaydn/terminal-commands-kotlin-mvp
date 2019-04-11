@@ -6,6 +6,7 @@ import net.serkanozaydin.hsmnzaydn.di.modules.DataModules
 import net.serkanozaydin.hsmnzaydn.di.modules.PresenterModules
 import net.serkanozaydin.hsmnzaydn.ui.CategoryActivity.CategoryActivity
 import net.serkanozaydin.hsmnzaydn.ui.CommandListActivity.CommandListActivity
+import net.serkanozaydin.hsmnzaydn.ui.MyFavouriteCommandListActivity.MyFavouriteCommandListActivity
 import javax.inject.Singleton
 
 
@@ -19,6 +20,8 @@ interface ViewComponents {
     fun injectCommandListActivity(commandListActivity: CommandListActivity) {
 
     }
+
+    fun injectMyFavouriteCommandListActivity(myFavouriteCommandListActivity: MyFavouriteCommandListActivity)
 
 
 }

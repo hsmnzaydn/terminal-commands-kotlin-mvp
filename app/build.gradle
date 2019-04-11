@@ -49,14 +49,12 @@ dependencies {
     compileOnly 'javax.annotation:jsr250-api:1.0'
     implementation 'javax.inject:javax.inject:1'
 
-//room
-
+    //room
     implementation "android.arch.persistence.room:runtime:1.0.0"
     kapt "android.arch.persistence.room:compiler:1.0.0"
 
-    //Couritunes
+    //Anko
     implementation "org.jetbrains.anko:anko:0.10.8"
-
 
 
 }

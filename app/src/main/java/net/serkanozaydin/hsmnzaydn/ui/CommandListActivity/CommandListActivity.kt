@@ -1,11 +1,9 @@
 package net.serkanozaydin.hsmnzaydn.ui.CommandListActivity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_command_list.*
-import kotlinx.android.synthetic.main.content_navigation.*
 import kotlinx.android.synthetic.main.toolbar.*
 import net.serkanozaydin.hsmnzaydn.MvpApp
 import net.serkanozaydin.hsmnzaydn.R
@@ -44,6 +42,7 @@ class CommandListActivity : BaseActivity(), CommandListActivityMvpView {
             }
 
         })
+        setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
 

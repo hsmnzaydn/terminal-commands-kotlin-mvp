@@ -14,8 +14,7 @@ class CategoryActivityPresenter<V : CategoryActivityMvpView> constructor(dataMan
     BasePresenter<V>(dataManager), CategoryActivityMvpPresenter<V> {
 
 
-
-     var commandList: List<Command> = ArrayList<Command>()
+    var commandList: List<Command> = ArrayList<Command>()
     var selectLanguageId:Int = 0
 
     override fun searchInCommands(newText: String) {
@@ -91,4 +90,11 @@ class CategoryActivityPresenter<V : CategoryActivityMvpView> constructor(dataMan
 
         })
     }
+
+    override fun saveCommand(commandTitle: String, commandDescription: String) {
+        dataManager.saveCommand(commandTitle,commandDescription)
+
+
+    }
+
 }

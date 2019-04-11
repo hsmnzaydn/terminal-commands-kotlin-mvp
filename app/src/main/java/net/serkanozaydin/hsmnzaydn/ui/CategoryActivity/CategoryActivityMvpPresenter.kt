@@ -7,4 +7,5 @@ interface CategoryActivityMvpPresenter<V : CategoryActivityMvpView> : MvpPresent
     fun searchInCommands(newText: String)
     fun filterInCommandList(newText: String)
     fun showLanguageDialog()
+    fun saveCommand(commandTitle: String, commandDescription: String)
 }

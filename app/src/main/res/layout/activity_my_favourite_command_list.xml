@@ -6,11 +6,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.CommandListActivity.CommandListActivity"
-android:background="@color/colorPrimaryDark">
-        <include layout="@layout/toolbar"/>
+        android:background="@color/colorPrimaryDark"
+        tools:context=".ui.MyFavouriteCommandListActivity.MyFavouriteCommandListActivity">
+    <include layout="@layout/toolbar"/>
 
     <androidx.recyclerview.widget.RecyclerView android:layout_width="match_parent"
                                                android:layout_height="match_parent"
-    android:id="@+id/activity_command_list_recylerview"></androidx.recyclerview.widget.RecyclerView>
+                                               android:id="@+id/activity_my_favourite_command_list_activity_recylerview"/>
+
 </LinearLayout>

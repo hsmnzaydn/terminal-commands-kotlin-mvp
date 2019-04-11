@@ -14,4 +14,10 @@
 
     <!-- Dailog -->
     <string name="dialog_select_language">Select Language</string>
+    <string name="dialog_add_command_title">Command Title</string>
+    <string name="dialog_add_comamnd_description">Command Description</string>
+
+
+    <!-- Button -->
+    <string name="button_save">Save</string>
 </resources>
