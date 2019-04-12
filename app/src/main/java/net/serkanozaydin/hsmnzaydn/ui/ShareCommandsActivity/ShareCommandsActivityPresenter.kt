@@ -64,7 +64,7 @@ class ShareCommandsActivityPresenter<V : ShareCommandsActivityMvpView> construct
                 dataManager.getAllCommandFromDb(object : ServiceCallback<List<Command>>{
                     override fun onSuccess(response: List<Command>?) {
                         for (command:Command in response!!){
-                            dataList.add("${command.title}.${command.description}\r\n")
+                            dataList.add("${command.title},${command.description}\r\n")
                         }
                         if(i==selectedItems.size-1){
                             mvpView.hideLoading()
