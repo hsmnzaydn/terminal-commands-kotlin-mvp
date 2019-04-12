@@ -32,10 +32,15 @@ import android.graphics.drawable.ColorDrawable
 import android.view.View
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import net.ozaydin.serkan.easy_csv.EasyCsv
+import net.ozaydin.serkan.easy_csv.FileCallback
 import net.serkanozaydin.hsmnzaydn.Utility.BUNDLE_CATEGORY_NAME
+import net.serkanozaydin.hsmnzaydn.Utility.shareFile
 import net.serkanozaydin.hsmnzaydn.data.entity.Command
 import net.serkanozaydin.hsmnzaydn.ui.MyFavouriteCommandListActivity.MyFavouriteCommandListActivity
+import net.serkanozaydin.hsmnzaydn.ui.ShareCommandsActivity.ShareCommandsActivity
 import net.serkanozaydin.hsmnzaydn.ui.adapters.CommandRecylerviewAdapter
+import java.io.File
 
 
 class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener, CategoryActivityMvpView,
@@ -174,7 +179,8 @@ class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
                 startActivity(intent)
             }
             R.id.nav_gallery -> {
-
+                var intent=Intent(this@CategoryActivity,ShareCommandsActivity::class.java)
+                startActivity(intent)
             }
             R.id.nav_slideshow -> {
 

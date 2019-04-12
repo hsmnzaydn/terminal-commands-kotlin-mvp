@@ -20,4 +20,9 @@
 
     <!-- Button -->
     <string name="button_save">Save</string>
+    <string name="button_commands">My Commands</string>
+
+    <!-- Information -->
+    <string name="information_command_title">Command Title</string>
+    <string name="information_command_description">Command Description</string>
 </resources>

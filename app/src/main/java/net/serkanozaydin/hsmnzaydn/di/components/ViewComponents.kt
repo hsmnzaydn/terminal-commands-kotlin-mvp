@@ -7,6 +7,7 @@ import net.serkanozaydin.hsmnzaydn.di.modules.PresenterModules
 import net.serkanozaydin.hsmnzaydn.ui.CategoryActivity.CategoryActivity
 import net.serkanozaydin.hsmnzaydn.ui.CommandListActivity.CommandListActivity
 import net.serkanozaydin.hsmnzaydn.ui.MyFavouriteCommandListActivity.MyFavouriteCommandListActivity
+import net.serkanozaydin.hsmnzaydn.ui.ShareCommandsActivity.ShareCommandsActivity
 import javax.inject.Singleton
 
 
@@ -22,6 +23,7 @@ interface ViewComponents {
     }
 
     fun injectMyFavouriteCommandListActivity(myFavouriteCommandListActivity: MyFavouriteCommandListActivity)
+    fun injectShareCommandsActivity(shareCommandsActivity: ShareCommandsActivity)
 
 
 }

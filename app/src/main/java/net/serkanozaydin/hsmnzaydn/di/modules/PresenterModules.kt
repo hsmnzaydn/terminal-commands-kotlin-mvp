@@ -13,6 +13,8 @@ import net.serkanozaydin.hsmnzaydn.ui.CommandListActivity.CommandListActivityPre
 import net.serkanozaydin.hsmnzaydn.ui.MyFavouriteCommandListActivity.MyFavouriteCommandListActivityMvpPresenter
 import net.serkanozaydin.hsmnzaydn.ui.MyFavouriteCommandListActivity.MyFavouriteCommandListActivityMvpView
 import net.serkanozaydin.hsmnzaydn.ui.MyFavouriteCommandListActivity.MyFavouriteCommandListActivityPresenter
+import net.serkanozaydin.hsmnzaydn.ui.ShareCommandsActivity.ShareCommandsActivityMvpView
+import net.serkanozaydin.hsmnzaydn.ui.ShareCommandsActivity.ShareCommandsActivityPresenter
 import net.serkanozaydin.hsmnzaydn.ui.base.BasePresenter
 import net.serkanozaydin.hsmnzaydn.ui.base.MvpView
 
@@ -52,5 +54,10 @@ class PresenterModules(app: Application) {
     @Provides
     fun provideMyFavouriteCommandListActivityMvpPresenter(dataManager: DataManager):MyFavouriteCommandListActivityMvpPresenter<MyFavouriteCommandListActivityMvpView>{
         return MyFavouriteCommandListActivityPresenter(dataManager)
+    }
+
+    @Provides
+    fun provideShareCommandsActivityMvpPresenter(dataManager: DataManager):ShareCommandsActivityPresenter<ShareCommandsActivityMvpView>{
+        return ShareCommandsActivityPresenter(dataManager)
     }
 }
