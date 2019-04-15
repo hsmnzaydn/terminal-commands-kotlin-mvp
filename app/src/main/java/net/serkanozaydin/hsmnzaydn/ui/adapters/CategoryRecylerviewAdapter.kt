@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import net.serkanozaydin.hsmnzaydn.R
+import net.serkanozaydin.hsmnzaydn.Utility.getImageWithCache
 import net.serkanozaydin.hsmnzaydn.data.entity.Category
 
 
@@ -55,6 +57,8 @@ class CategoryRecylerviewAdapter( private var myListener: ItemListener?) :
         fun setData(item: Category) {
             this.item = item
             itemView.findViewById<TextView>(R.id.row_category_title_text_view).text=item.title
+            var categoryImage=itemView.findViewById<AppCompatImageView>(R.id.row_category_thumbnail_image_view)
+            getImageWithCache(categoryImage,item.iconPath)
             // TODO set data to view
         }
 

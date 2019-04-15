@@ -17,7 +17,7 @@ class ShareCommandsActivityPresenter<V : ShareCommandsActivityMvpView> construct
         mvpView.showLoading()
         dataManager.getCategories(object : ServiceCallback<List<Category>>{
             override fun onSuccess(response: List<Category>?) {
-                var dbCategory=Category(1,"","",mvpView.getActivity().getString(R.string.button_commands));
+                var dbCategory=Category("",1,"","",mvpView.getActivity().getString(R.string.button_commands));
                 categoryList=response as ArrayList<Category>
                 categoryList.add(dbCategory)
 

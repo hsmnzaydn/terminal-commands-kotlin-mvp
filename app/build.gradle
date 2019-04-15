@@ -59,5 +59,8 @@ dependencies {
     //Csv creator
     implementation 'com.github.hsmnzaydn:easy-csv:1.0.0'
 
+    //Picasso
+    implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
+
 
 }

@@ -3,6 +3,8 @@ import com.google.gson.annotations.SerializedName
 
 
 data class Category(
+    @SerializedName("iconPath")
+    val iconPath:String,
     @SerializedName("__v")
     val v: Int,
     @SerializedName("_id")

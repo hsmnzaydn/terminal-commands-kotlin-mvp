@@ -8,7 +8,11 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.StrictMode
+import android.widget.ImageView
 import android.widget.ProgressBar
+import com.squareup.picasso.Callback
+import com.squareup.picasso.NetworkPolicy
+import com.squareup.picasso.Picasso
 import net.serkanozaydin.hsmnzaydn.R
 import java.io.File
 
@@ -42,4 +46,21 @@ fun shareFile(file: File, activity: Activity) {
 
         activity.startActivity(Intent.createChooser(intentShareFile, "Paylaş"))
     }
+}
+
+fun getImageWithCache(imageView: ImageView, url: String) {
+
+    Picasso.get().load(url).networkPolicy(NetworkPolicy.OFFLINE).error(R.drawable.action_apt).into(imageView, object : Callback {
+        override fun onSuccess() {}
+
+        override fun onError(e: Exception) {
+
+            Picasso.get().load(url).error(R.drawable.action_apt).into(imageView)
+        }
+    })
+}
+
+fun getImage(imageView: ImageView, url: String) {
+    Picasso.get().load(url).into(imageView)
+
 }
