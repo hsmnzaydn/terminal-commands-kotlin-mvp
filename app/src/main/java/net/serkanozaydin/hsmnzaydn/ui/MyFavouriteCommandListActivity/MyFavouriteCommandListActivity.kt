@@ -14,6 +14,8 @@ import net.serkanozaydin.hsmnzaydn.ui.adapters.CommandRecylerviewAdapter
 import net.serkanozaydin.hsmnzaydn.ui.base.BaseActivity
 import javax.inject.Inject
 
+
+
 class MyFavouriteCommandListActivity : BaseActivity(),MyFavouriteCommandListActivityMvpView {
 
     @Inject
@@ -44,10 +46,15 @@ class MyFavouriteCommandListActivity : BaseActivity(),MyFavouriteCommandListActi
 
 
     override fun loadDataToList(response: List<Command>?) {
-        adapter.setData(response)
-        activity_my_favourite_command_list_activity_recylerview.layoutManager =
-            LinearLayoutManager(this, LinearLayout.VERTICAL, false)
-        activity_my_favourite_command_list_activity_recylerview.adapter = adapter
+        runOnUiThread {
+            adapter.setData(response)
+            activity_my_favourite_command_list_activity_recylerview.layoutManager =
+                LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+            activity_my_favourite_command_list_activity_recylerview.adapter = adapter
+        }
+
+
+
     }
 
 }

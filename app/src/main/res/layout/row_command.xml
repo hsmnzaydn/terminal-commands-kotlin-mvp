@@ -7,7 +7,7 @@
 
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="85dp"
             android:layout_margin="7dp"
             card_view:cardUseCompatPadding="true"
             card_view:cardElevation="4dp"
@@ -40,6 +40,7 @@
             <androidx.appcompat.widget.AppCompatTextView android:layout_width="match_parent"
                                                          android:layout_height="wrap_content"
                                                          android:text="İçerik"
+                                                         android:lines="3"
                                                          app:layout_constraintTop_toBottomOf="@+id/row_command_command_title_text_view"
                                                          app:layout_constraintStart_toStartOf="parent"
                                                          android:layout_marginStart="8dp"

@@ -15,10 +15,10 @@ class ShareCommandsActivityPresenter<V : ShareCommandsActivityMvpView> construct
 
     override fun getCategoriesAndDb() {
         mvpView.showLoading()
-        dataManager.getCategories(object : ServiceCallback<List<Category>>{
+        dataManager.getCategories(object : ServiceCallback<List<Category>> {
             override fun onSuccess(response: List<Category>?) {
-                var dbCategory=Category("",1,"","",mvpView.getActivity().getString(R.string.button_commands));
-                categoryList=response as ArrayList<Category>
+                var dbCategory = Category("", 1, "", "", mvpView.getActivity().getString(R.string.button_commands));
+                categoryList = response as ArrayList<Category>
                 categoryList.add(dbCategory)
 
                 mvpView.loadDataToList(categoryList);
@@ -27,6 +27,7 @@ class ShareCommandsActivityPresenter<V : ShareCommandsActivityMvpView> construct
 
             override fun onError(errorCode: Int, errorMessage: String) {
                 mvpView.showError(errorMessage)
+                mvpView.hideLoading()
             }
 
         })
@@ -35,53 +36,60 @@ class ShareCommandsActivityPresenter<V : ShareCommandsActivityMvpView> construct
 
 
     override fun shareCommands(selectedItems: List<Category>) {
-        mvpView.showLoading()
-        var headerList:ArrayList<String> = ArrayList()
-        var dataList:ArrayList<String> = ArrayList()
+        if (selectedItems.size == 0) {
+            mvpView.showError(mvpView.getActivity().getString(R.string.information_select_category))
+        } else {
 
-        headerList.add("${mvpView.getActivity().getString(R.string.information_command_title)},${mvpView.getActivity().getString(R.string.information_command_description)}\r\n")
+            mvpView.showLoading()
+            var headerList: ArrayList<String> = ArrayList()
+            var dataList: ArrayList<String> = ArrayList()
 
-        for (i:Int in selectedItems.indices){
-            var category:Category=selectedItems[i]
-            if(category.v != 1){
-                dataManager.getCommandsOfCategory(category.id,object : ServiceCallback<List<Command>>{
-                    override fun onSuccess(response: List<Command>?) {
-                    for (command:Command in response!!){
-                        dataList.add("${command.title},${command.description}\r\n")
-                    }
-                        if(i==selectedItems.size-1){
-                            mvpView.shareCsvFile(headerList,dataList)
-                        }
-                    }
+            headerList.add(
+                "${mvpView.getActivity().getString(R.string.information_command_title)},${mvpView.getActivity().getString(
+                    R.string.information_command_description
+                )}\r\n"
+            )
 
-                    override fun onError(errorCode: Int, errorMessage: String) {
-                        mvpView.showError(errorMessage)
-                    }
-
-                })
-            }else{
-                dataManager.getAllCommandFromDb(object : ServiceCallback<List<Command>>{
-                    override fun onSuccess(response: List<Command>?) {
-                        for (command:Command in response!!){
-                            dataList.add("${command.title},${command.description}\r\n")
-                        }
-                        if(i==selectedItems.size-1){
-                            mvpView.shareCsvFile(headerList,dataList)
-
+            for (i: Int in selectedItems.indices) {
+                var category: Category = selectedItems[i]
+                if (category.v != 1) {
+                    dataManager.getCommandsOfCategory(category.id, object : ServiceCallback<List<Command>> {
+                        override fun onSuccess(response: List<Command>?) {
+                            for (command: Command in response!!) {
+                                dataList.add("${command.title},${command.description}\r\n")
+                            }
+                            if (i == selectedItems.size - 1) {
+                                mvpView.shareCsvFile(headerList, dataList)
+                            }
                         }
 
-                    }
+                        override fun onError(errorCode: Int, errorMessage: String) {
+                            mvpView.showError(errorMessage)
+                        }
 
-                    override fun onError(errorCode: Int, errorMessage: String) {
-                    }
+                    })
+                } else {
+                    dataManager.getAllCommandFromDb(object : ServiceCallback<List<Command>> {
+                        override fun onSuccess(response: List<Command>?) {
+                            for (command: Command in response!!) {
+                                dataList.add("${command.title},${command.description}\r\n")
+                            }
+                            if (i == selectedItems.size - 1) {
+                                mvpView.shareCsvFile(headerList, dataList)
 
-                })
+                            }
+
+                        }
+
+                        override fun onError(errorCode: Int, errorMessage: String) {
+                        }
+
+                    })
+                }
+
+
             }
-
-
-
         }
-
 
 
     }

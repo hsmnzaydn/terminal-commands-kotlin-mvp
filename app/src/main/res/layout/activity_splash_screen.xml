@@ -8,7 +8,7 @@
         tools:context=".ui.SplashScreenActivity.SplashScreenActivity"
         android:background="@color/colorPrimaryDark">
 
-    <androidx.appcompat.widget.AppCompatImageView android:layout_width="273dp"
+    <ImageView android:layout_width="273dp"
                                                   android:layout_height="357dp"
                                                   android:src="@drawable/logo"
                                                   android:layout_marginTop="8dp"

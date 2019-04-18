@@ -58,8 +58,11 @@ class CommandRecylerviewAdapter( private var myListener: ItemListener?) :
 
         fun setData(item: Command?) {
             this.item = item
-            itemView.findViewById<AppCompatTextView>(R.id.row_command_command_title_text_view).text= item!!.title
-            itemView.findViewById<AppCompatTextView>(R.id.row_command_description_text_view).text=item!!.description
+
+                itemView.findViewById<AppCompatTextView>(R.id.row_command_command_title_text_view).text= item!!.title
+                itemView.findViewById<AppCompatTextView>(R.id.row_command_description_text_view).text=item!!.description
+
+
             // TODO set data to view
         }
 

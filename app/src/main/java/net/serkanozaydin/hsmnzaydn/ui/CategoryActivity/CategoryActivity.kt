@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.app.SearchManager
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.core.view.GravityCompat
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -29,18 +28,13 @@ import net.serkanozaydin.hsmnzaydn.R
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.view.View
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
-import net.ozaydin.serkan.easy_csv.EasyCsv
-import net.ozaydin.serkan.easy_csv.FileCallback
 import net.serkanozaydin.hsmnzaydn.Utility.BUNDLE_CATEGORY_NAME
-import net.serkanozaydin.hsmnzaydn.Utility.shareFile
 import net.serkanozaydin.hsmnzaydn.data.entity.Command
 import net.serkanozaydin.hsmnzaydn.ui.MyFavouriteCommandListActivity.MyFavouriteCommandListActivity
 import net.serkanozaydin.hsmnzaydn.ui.ShareCommandsActivity.ShareCommandsActivity
 import net.serkanozaydin.hsmnzaydn.ui.adapters.CommandRecylerviewAdapter
-import java.io.File
 
 
 class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener, CategoryActivityMvpView,
@@ -197,8 +191,8 @@ class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
     override fun onQueryTextChange(newText: String?): Boolean {
         if (newText!!.length == 3) {
             presenter.searchInCommands(newText)
-        } else if (newText!!.length < 2) {
-            presenter.getCategories()
+        } else if (newText!!.length < 3) {
+            presenter.getCategoriesFromCache()
         } else if (newText.length > 3) {
             presenter.filterInCommandList(newText)
         }

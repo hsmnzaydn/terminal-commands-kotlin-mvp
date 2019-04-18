@@ -15,7 +15,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
-        <activity android:name=".ui.SplashScreenActivity.SplashScreenActivity">
+        <activity android:name=".ui.SplashScreenActivity.SplashScreenActivity"
+                  android:noHistory="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -23,13 +24,15 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.ShareCommandsActivity.ShareCommandsActivity">
+        <activity android:name=".ui.ShareCommandsActivity.ShareCommandsActivity"
+                  android:label="@string/title_share_commands">
         </activity>
-        <activity android:name=".ui.MyFavouriteCommandListActivity.MyFavouriteCommandListActivity">
+        <activity android:name=".ui.MyFavouriteCommandListActivity.MyFavouriteCommandListActivity"
+                  android:label="@string/nav_menu_my_commands">
         </activity>
         <activity
                 android:name=".ui.CategoryActivity.CategoryActivity"
-                android:label="@string/title_activity_navigation"
+                android:label="@string/title_categories"
                 android:theme="@style/AppTheme.NoActionBar">
 
         </activity>

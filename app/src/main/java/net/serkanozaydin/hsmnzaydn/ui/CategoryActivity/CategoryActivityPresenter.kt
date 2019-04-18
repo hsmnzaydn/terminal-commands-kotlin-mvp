@@ -1,6 +1,5 @@
 package net.serkanozaydin.hsmnzaydn.ui.CategoryActivity
 
-import android.util.Log
 import net.serkanozaydin.hsmnzaydn.R
 import net.serkanozaydin.hsmnzaydn.data.ServiceCallback
 import net.serkanozaydin.hsmnzaydn.data.DataManager
@@ -16,6 +15,7 @@ class CategoryActivityPresenter<V : CategoryActivityMvpView> constructor(dataMan
 
     var commandList: List<Command> = ArrayList<Command>()
     var selectLanguageId:Int = 0
+    var categoryList:List<Category> = ArrayList<Category>()
 
     override fun searchInCommands(newText: String) {
         mvpView.showLoading()
@@ -36,10 +36,16 @@ class CategoryActivityPresenter<V : CategoryActivityMvpView> constructor(dataMan
         })
     }
 
+    override fun getCategoriesFromCache() {
+        mvpView.loadDataToList(categoryList)
+    }
+
+
     override fun getCategories() {
         mvpView.showLoading()
         dataManager.getCategories(object : ServiceCallback<List<Category>> {
             override fun onSuccess(response: List<Category>?) {
+                categoryList= response!!;
                 mvpView.loadDataToList(response)
                 mvpView.hideLoading()
             }

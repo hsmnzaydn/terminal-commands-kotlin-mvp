@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Terminal Commands Pro</string>
+    <string name="title_activity_navigation">Terminal Commands Pro</string>
+    <string name="action_settings">Réglages</string>
+    <string name="action_search">Recherche</string>
+    <string name="nav_menu_my_commands">Ma commande</string>
+    <string name="nav_menu_share_commands">Commandes de partage</string>
+    <string name="dialog_select_language">Choisissez la langue</string>
+    <string name="dialog_add_command_title">Titre de la commande</string>
+    <string name="dialog_add_comamnd_description">Description de la commande</string>
+    <string name="button_save">Sauver</string>
+    <string name="button_share">Part</string>
+    <string name="button_commands">Ma commande</string>
+    <string name="information_command_title">Titre de la commande</string>
+    <string name="information_command_description">Description de la commande</string>
+    <string name="information_saved_command">Votre commande a été enregistrée avec succès</string>
+    <string name="information_select_category">Vous devez sélectionner une catégorie</string>
+    <string name="title_my_commands">Ma commande</string>
+    <string name="title_share_commands">Commandes de partage</string>
+    <string name="title_categories">Catégories</string>
+</resources>

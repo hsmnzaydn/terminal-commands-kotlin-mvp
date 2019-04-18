@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Terminal Commands Pro</string>
+    <string name="title_activity_navigation">Terminal Commands Pro</string>
+    <string name="action_settings">Ayarlar</string>
+    <string name="action_search">Arama</string>
+    <string name="nav_menu_my_commands">Komutlarım</string>
+    <string name="nav_menu_share_commands">Komutları Paylaş</string>
+    <string name="dialog_select_language">Dil Seç</string>
+    <string name="dialog_add_command_title">Komut Başlığı</string>
+    <string name="dialog_add_comamnd_description">Komut Açıklaması</string>
+    <string name="button_save">Kaydet</string>
+    <string name="button_share">Paylaş</string>
+    <string name="button_commands">Komutlarım</string>
+    <string name="information_command_title">Komut Başlığı</string>
+    <string name="information_command_description">Komut Açıklaması</string>
+    <string name="information_saved_command">Komutunuz başarıyla kaydedildi</string>
+    <string name="information_select_category">Bir tane kategori seçmeniz gerekmektedir</string>
+    <string name="title_my_commands">Komutlarım</string>
+    <string name="title_share_commands">Komutları Paylaş</string>
+    <string name="title_categories">Kategoriler</string>
+</resources>

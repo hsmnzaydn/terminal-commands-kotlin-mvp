@@ -1,8 +1,14 @@
 package net.serkanozaydin.hsmnzaydn.ui.CommandListActivity
 
+import android.app.AlertDialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.activity_command_list.*
 import kotlinx.android.synthetic.main.toolbar.*
 import net.serkanozaydin.hsmnzaydn.MvpApp
@@ -38,6 +44,26 @@ class CommandListActivity : BaseActivity(), CommandListActivityMvpView {
 
         adapter= CommandRecylerviewAdapter(object : CommandRecylerviewAdapter.ItemListener{
             override fun onItemClick(item: Command) {
+
+                val dialogBuilder = AlertDialog.Builder(this@CommandListActivity)
+                val inflater = layoutInflater
+                val dialogView = inflater.inflate(R.layout.dialog_description_command, null)
+                dialogBuilder.setView(dialogView)
+                var commandTitle = dialogView.findViewById<TextView>(R.id.dialog_description_command_title_text_view)
+                var commandDescription =
+                    dialogView.findViewById<TextView>(R.id.dialog_description_command_description_text_view)
+
+                commandTitle.text=item.title
+                commandDescription.text=item.description
+
+
+                val alertDialog = dialogBuilder.create()
+                alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+                alertDialog.show()
+
+
+
 
             }
 

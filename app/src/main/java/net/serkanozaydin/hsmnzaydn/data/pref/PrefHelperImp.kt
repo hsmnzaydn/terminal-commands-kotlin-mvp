@@ -2,6 +2,7 @@ package net.serkanozaydin.hsmnzaydn.data.pref
 
 import android.content.Context
 import android.content.SharedPreferences
+import java.util.*
 import javax.inject.Inject
 
 class PrefHelperImp:PrefHelper {
@@ -19,7 +20,16 @@ class PrefHelperImp:PrefHelper {
     }
 
     override fun getLanguage(): String {
-        return mPrefs.getString("LANGUAGE", "ENG")
+        var language:String=Locale.getDefault().getISO3Language().toUpperCase();
+
+        when (language){
+            "TUR" -> language="TR"
+            "FRA" -> language="FRA"
+            else ->{
+                language="ENG"
+            }
+        }
+        return mPrefs.getString("LANGUAGE",language)
 
     }
 

@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Terminal Commands Pro</string>
     <string name="title_activity_navigation">Terminal Commands Pro</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="nav_header_title" translatable="false">Android Studio</string>
+    <string name="nav_header_subtitle" translatable="false">android.studio@android.com</string>
+    <string name="nav_header_desc" translatable="false">Navigation header</string>
 
 
     <!-- Menu -->
@@ -21,11 +21,18 @@
 
 
     <!-- Button -->
-    <string name="button_save">Share</string>
+    <string name="button_save">Save</string>
+    <string name="button_share">Share</string>
     <string name="button_commands">My Commands</string>
 
     <!-- Information -->
     <string name="information_command_title">Command Title</string>
     <string name="information_command_description">Command Description</string>
     <string name="information_saved_command">Your command successfully saved</string>
+    <string name="information_select_category">You have to select a category</string>
+
+    <!-- Titles -->
+    <string name="title_my_commands">My Commands</string>
+    <string name="title_share_commands">Share Commands</string>
+    <string name="title_categories">Categories</string>
 </resources>
