@@ -18,15 +18,15 @@ import java.io.File
 import java.util.*
 import javax.inject.Inject
 
-class ShareCommandsActivity : BaseActivity(),ShareCommandsActivityMvpView {
+class ShareCommandsActivity : BaseActivity(), ShareCommandsActivityMvpView {
 
 
-    val WRITER:Int=1
+    val WRITER: Int = 1
 
     @Inject
     lateinit var presenter: ShareCommandsActivityPresenter<ShareCommandsActivityMvpView>
 
-    lateinit var adapter:WritableTitleRecylerViewAdapter
+    lateinit var adapter: WritableTitleRecylerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,11 +41,12 @@ class ShareCommandsActivity : BaseActivity(),ShareCommandsActivityMvpView {
 
         presenter.getCategoriesAndDb()
 
-        adapter= WritableTitleRecylerViewAdapter(this@ShareCommandsActivity,object : WritableTitleRecylerViewAdapter.ItemListener{
-            override fun onItemClick(item: Category, position: Int) {
+        adapter = WritableTitleRecylerViewAdapter(this@ShareCommandsActivity,
+            object : WritableTitleRecylerViewAdapter.ItemListener {
+                override fun onItemClick(item: Category, position: Int) {
 
-            }
-        })
+                }
+            })
 
         activity_share_commands_export_button.setOnClickListener {
 
@@ -61,19 +62,21 @@ class ShareCommandsActivity : BaseActivity(),ShareCommandsActivityMvpView {
     }
 
     override fun shareCsvFile(headerList: ArrayList<String>, dataList: ArrayList<String>) {
-        var easyCsv= EasyCsv(this@ShareCommandsActivity);
+        var easyCsv = EasyCsv(this@ShareCommandsActivity);
 
 
 
 
-        easyCsv.createCsvFile(getString(R.string.app_name)+UUID.randomUUID(),headerList,dataList,WRITER,object :
+        easyCsv.createCsvFile(getString(R.string.app_name) + UUID.randomUUID(), headerList, dataList, WRITER, object :
             FileCallback {
             override fun onSuccess(p0: File?) {
-                shareFile(p0!!,this@ShareCommandsActivity)
+                hideLoading()
+                shareFile(p0!!, this@ShareCommandsActivity)
             }
 
             override fun onFail(p0: String?) {
-            showError(p0!!)
+                hideLoading()
+                showError(p0!!)
             }
 
         })

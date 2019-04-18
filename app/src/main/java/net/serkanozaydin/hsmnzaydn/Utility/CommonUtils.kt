@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.StrictMode
 import android.widget.ImageView
 import android.widget.ProgressBar
+import androidx.core.content.ContextCompat.startActivity
 import com.squareup.picasso.Callback
 import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
@@ -63,4 +64,9 @@ fun getImageWithCache(imageView: ImageView, url: String) {
 fun getImage(imageView: ImageView, url: String) {
     Picasso.get().load(url).into(imageView)
 
+}
+
+fun changeActivity(activity: Activity,goClass:Class<Any>){
+    var intent=Intent(activity,goClass)
+    activity.startActivity(intent)
 }

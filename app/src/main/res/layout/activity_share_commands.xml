@@ -22,6 +22,8 @@
                                                        android:id="@+id/activity_share_commands_export_button"
                                                        android:layout_height="70dp"
                                                        app:cornerRadius="50dp"
+                                                       android:layout_marginLeft="15dp"
+                                                       android:layout_marginRight="15dp"
                                                        android:textColor="@android:color/white"
                                                        android:text="@string/button_save"
                                                        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"

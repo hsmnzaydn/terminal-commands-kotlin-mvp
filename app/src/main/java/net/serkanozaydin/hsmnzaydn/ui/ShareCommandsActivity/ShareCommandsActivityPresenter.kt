@@ -35,12 +35,12 @@ class ShareCommandsActivityPresenter<V : ShareCommandsActivityMvpView> construct
 
 
     override fun shareCommands(selectedItems: List<Category>) {
+        mvpView.showLoading()
         var headerList:ArrayList<String> = ArrayList()
         var dataList:ArrayList<String> = ArrayList()
 
         headerList.add("${mvpView.getActivity().getString(R.string.information_command_title)},${mvpView.getActivity().getString(R.string.information_command_description)}\r\n")
 
-        mvpView.showLoading()
         for (i:Int in selectedItems.indices){
             var category:Category=selectedItems[i]
             if(category.v != 1){
@@ -50,7 +50,6 @@ class ShareCommandsActivityPresenter<V : ShareCommandsActivityMvpView> construct
                         dataList.add("${command.title},${command.description}\r\n")
                     }
                         if(i==selectedItems.size-1){
-                            mvpView.hideLoading()
                             mvpView.shareCsvFile(headerList,dataList)
                         }
                     }
@@ -67,8 +66,8 @@ class ShareCommandsActivityPresenter<V : ShareCommandsActivityMvpView> construct
                             dataList.add("${command.title},${command.description}\r\n")
                         }
                         if(i==selectedItems.size-1){
-                            mvpView.hideLoading()
                             mvpView.shareCsvFile(headerList,dataList)
+
                         }
 
                     }
@@ -82,7 +81,6 @@ class ShareCommandsActivityPresenter<V : ShareCommandsActivityMvpView> construct
 
 
         }
-        mvpView.hideLoading()
 
 
 

@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Kotlin</string>
-    <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="app_name">Terminal Commands Pro</string>
+    <string name="title_activity_navigation">Terminal Commands Pro</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -11,6 +11,8 @@
     <!-- Menu -->
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
+    <string name="nav_menu_my_commands">My Commands</string>
+    <string name="nav_menu_share_commands">Share Commands</string>
 
     <!-- Dailog -->
     <string name="dialog_select_language">Select Language</string>
@@ -19,10 +21,11 @@
 
 
     <!-- Button -->
-    <string name="button_save">Save</string>
+    <string name="button_save">Share</string>
     <string name="button_commands">My Commands</string>
 
     <!-- Information -->
     <string name="information_command_title">Command Title</string>
     <string name="information_command_description">Command Description</string>
+    <string name="information_saved_command">Your command successfully saved</string>
 </resources>

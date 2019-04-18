@@ -93,7 +93,7 @@ class CategoryActivityPresenter<V : CategoryActivityMvpView> constructor(dataMan
 
     override fun saveCommand(commandTitle: String, commandDescription: String) {
         dataManager.saveCommand(commandTitle,commandDescription)
-
+        mvpView.showInformation(mvpView.getActivity().getString(R.string.information_saved_command))
 
     }
 

@@ -15,6 +15,9 @@ import net.serkanozaydin.hsmnzaydn.ui.MyFavouriteCommandListActivity.MyFavourite
 import net.serkanozaydin.hsmnzaydn.ui.MyFavouriteCommandListActivity.MyFavouriteCommandListActivityPresenter
 import net.serkanozaydin.hsmnzaydn.ui.ShareCommandsActivity.ShareCommandsActivityMvpView
 import net.serkanozaydin.hsmnzaydn.ui.ShareCommandsActivity.ShareCommandsActivityPresenter
+import net.serkanozaydin.hsmnzaydn.ui.SplashScreenActivity.SplashScreenActivityMvpPresenter
+import net.serkanozaydin.hsmnzaydn.ui.SplashScreenActivity.SplashScreenActivityMvpView
+import net.serkanozaydin.hsmnzaydn.ui.SplashScreenActivity.SplashScreenActivityPresenter
 import net.serkanozaydin.hsmnzaydn.ui.base.BasePresenter
 import net.serkanozaydin.hsmnzaydn.ui.base.MvpView
 
@@ -59,5 +62,10 @@ class PresenterModules(app: Application) {
     @Provides
     fun provideShareCommandsActivityMvpPresenter(dataManager: DataManager):ShareCommandsActivityPresenter<ShareCommandsActivityMvpView>{
         return ShareCommandsActivityPresenter(dataManager)
+    }
+
+    @Provides
+    fun provideSplashScreenActivityMvpPresenter(dataManager: DataManager):SplashScreenActivityMvpPresenter<SplashScreenActivityMvpView>{
+        return SplashScreenActivityPresenter(dataManager)
     }
 }
