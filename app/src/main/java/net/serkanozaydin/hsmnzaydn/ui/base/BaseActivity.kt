@@ -9,12 +9,14 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import net.serkanozaydin.hsmnzaydn.R
 import net.serkanozaydin.hsmnzaydn.Utility.showLoadingDialog
 
 abstract class BaseActivity : AppCompatActivity(), MvpView {
 
     lateinit var progressDialog: ProgressDialog
+    private var alertDialogBuilder: AlertDialog.Builder? = null
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
@@ -87,6 +89,28 @@ abstract class BaseActivity : AppCompatActivity(), MvpView {
             val dialog = builder.create()
             dialog.show()
         }
+    }
+
+    override fun showDialogWithOutChoose(
+        title: String,
+        description: String,
+        buttonText: String,
+        dialogCallback: DialogCallback
+    ) {
+        alertDialogBuilder = AlertDialog.Builder(this)
+
+        alertDialogBuilder!!.setTitle(title).setMessage(description).setPositiveButton(buttonText,
+            DialogInterface.OnClickListener { dialog, which -> dialogCallback.pressedPossitiveButton() })
+        val alertDialog = alertDialogBuilder!!.create()
+
+        alertDialog.setOnShowListener(DialogInterface.OnShowListener {
+            alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(resources.getColor(R.color.colorPrimaryDark))
+            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(resources.getColor(R.color.colorPrimaryDark))
+        })
+
+        alertDialog.setCanceledOnTouchOutside(true)
+        alertDialog.show()
+
     }
 
 }

@@ -19,4 +19,12 @@
     <string name="title_my_commands">Komutlarım</string>
     <string name="title_share_commands">Komutları Paylaş</string>
     <string name="title_categories">Kategoriler</string>
+    <string name="nav_menu_download_commands">Tüm Komutları İndirin</string>
+    <string name="button_download">İndir</string>
+    <string name="button_cancel">İptal</string>
+    <string name="information_download_commands">Tüm Komutları İndirin</string>
+    <string name="information_download_commands_description">Eğer indirme düğmesine basarsanız, internet kapalıyken
+        komutlara erişebileceksiniz. Emin misiniz?
+    </string>
+    <string name="information_downloaded_all_commands">Tüm komutlar başarıyla indirildi</string>
 </resources>

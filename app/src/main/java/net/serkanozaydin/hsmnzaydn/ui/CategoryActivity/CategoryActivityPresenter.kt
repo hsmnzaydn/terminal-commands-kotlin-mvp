@@ -7,10 +7,12 @@ import net.serkanozaydin.hsmnzaydn.data.entity.Category
 import net.serkanozaydin.hsmnzaydn.data.entity.Command
 import net.serkanozaydin.hsmnzaydn.data.entity.Language
 import net.serkanozaydin.hsmnzaydn.ui.base.BasePresenter
+import net.serkanozaydin.hsmnzaydn.ui.base.DialogCallback
 import net.serkanozaydin.hsmnzaydn.ui.base.ListSelectItem
 
 class CategoryActivityPresenter<V : CategoryActivityMvpView> constructor(dataManager: DataManager) :
     BasePresenter<V>(dataManager), CategoryActivityMvpPresenter<V> {
+
 
 
     var commandList: List<Command> = ArrayList<Command>()
@@ -101,6 +103,38 @@ class CategoryActivityPresenter<V : CategoryActivityMvpView> constructor(dataMan
         dataManager.saveCommand(commandTitle,commandDescription)
         mvpView.showInformation(mvpView.getActivity().getString(R.string.information_saved_command))
 
+    }
+
+    override fun downloadAllCommands() {
+        mvpView.showDialogWithOutChoose(mvpView.getActivity().getString(R.string.information_download_commands),mvpView.getActivity().getString(R.string.information_download_commands_description),mvpView.getActivity().getString(R.string.button_download),object :
+            DialogCallback{
+            override fun pressedPossitiveButton() {
+                mvpView.showLoading()
+
+                for(i:Int in categoryList.indices){
+                    dataManager.getCommandsOfCategory(categoryList.get(i).id,object : ServiceCallback<List<Command>>{
+                        override fun onSuccess(response: List<Command>?) {
+
+                            if(i == categoryList.size-1){
+                                mvpView.hideLoading()
+                                mvpView.showInformation(mvpView.getActivity().getString(R.string.information_downloaded_all_commands))
+                            }
+                        }
+
+                        override fun onError(errorCode: Int, errorMessage: String) {
+                            mvpView.showError(errorMessage)
+                            mvpView.hideLoading()
+                        }
+
+                    })
+
+                }
+            }
+
+            override fun pressedNegativeButton() {
+
+            }
+        })
     }
 
 }

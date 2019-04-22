@@ -176,6 +176,9 @@ class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
                 var intent=Intent(this@CategoryActivity,ShareCommandsActivity::class.java)
                 startActivity(intent)
             }
+            R.id.nav_download->{
+                presenter.downloadAllCommands()
+            }
 
         }
 

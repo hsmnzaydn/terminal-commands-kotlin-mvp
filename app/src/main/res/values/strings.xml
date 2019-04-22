@@ -13,6 +13,7 @@
     <string name="action_search">Search</string>
     <string name="nav_menu_my_commands">My Commands</string>
     <string name="nav_menu_share_commands">Share Commands</string>
+    <string name="nav_menu_download_commands">Download All Commands</string>
 
     <!-- Dailog -->
     <string name="dialog_select_language">Select Language</string>
@@ -20,17 +21,22 @@
     <string name="dialog_add_comamnd_description">Command Description</string>
 
 
+
     <!-- Button -->
     <string name="button_save">Save</string>
     <string name="button_share">Share</string>
     <string name="button_commands">My Commands</string>
+    <string name="button_download">Download</string>
+    <string name="button_cancel">Cancel</string>
 
     <!-- Information -->
     <string name="information_command_title">Command Title</string>
     <string name="information_command_description">Command Description</string>
     <string name="information_saved_command">Your command successfully saved</string>
     <string name="information_select_category">You have to select a category</string>
-
+    <string name="information_download_commands">Download All Commands</string>
+    <string name="information_download_commands_description">If you press the download button, you will be able to access the commands when your internet is closed. Are you sure?</string>
+    <string name="information_downloaded_all_commands">Successfully downloaded all commands</string>
     <!-- Titles -->
     <string name="title_my_commands">My Commands</string>
     <string name="title_share_commands">Share Commands</string>

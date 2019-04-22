@@ -10,14 +10,23 @@
         tools:context=".ui.ShareCommandsActivity.ShareCommandsActivity">
     <include layout="@layout/toolbar"/>
 
-    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
-    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical">
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_gravity="top">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical">
         <androidx.recyclerview.widget.RecyclerView android:layout_width="match_parent"
                                                android:layout_height="match_parent"
                                                android:id="@+id/activity_share_commands_recylerview"
+                                                   android:layout_gravity="top"
     ></androidx.recyclerview.widget.RecyclerView>
 
+        <View android:layout_width="match_parent" android:layout_height="70dp" android:background="@color/colorPrimaryDark"
+        android:layout_gravity="bottom"/>
+        </LinearLayout>
+
+    </ScrollView>
     <com.google.android.material.button.MaterialButton android:layout_width="match_parent"
                                                        android:id="@+id/activity_share_commands_export_button"
                                                        android:layout_height="70dp"
@@ -29,5 +38,6 @@
                                                        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
                                                        tools:layout_editor_absoluteX="3dp"
                                                        app:backgroundTint="@color/orange"
-    /></LinearLayout></ScrollView>
+                                                       android:layout_gravity="bottom"
+    /></androidx.coordinatorlayout.widget.CoordinatorLayout>
 </LinearLayout>

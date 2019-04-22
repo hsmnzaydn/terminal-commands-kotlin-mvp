@@ -5,20 +5,24 @@ import android.graphics.Typeface
 
 interface MvpView {
 
-     fun showLoading()
+    fun showLoading()
 
-     fun hideLoading()
+    fun hideLoading()
 
 
+    fun showInformation(text: String)
 
-     fun showInformation(text: String)
+    fun showError(text: String)
 
-     fun showError(text: String)
+    fun hideSystemUI()
 
-     fun hideSystemUI()
+    fun getActivity(): Activity
 
-     fun getActivity(): Activity
-
-      fun showListDialog(itemList: List<String>?, title: String, listSelectItem: ListSelectItem<Int>)
-
+    fun showListDialog(itemList: List<String>?, title: String, listSelectItem: ListSelectItem<Int>)
+    fun showDialogWithOutChoose(
+        title: String,
+        description: String,
+        buttonText: String,
+        dialogCallback:DialogCallback
+    )
 }

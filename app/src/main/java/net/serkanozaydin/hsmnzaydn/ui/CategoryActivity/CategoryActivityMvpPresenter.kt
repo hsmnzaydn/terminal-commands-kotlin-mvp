@@ -9,4 +9,5 @@ interface CategoryActivityMvpPresenter<V : CategoryActivityMvpView> : MvpPresent
     fun showLanguageDialog()
     fun saveCommand(commandTitle: String, commandDescription: String)
     fun getCategoriesFromCache()
+    fun downloadAllCommands()
 }

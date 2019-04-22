@@ -7,3 +7,6 @@ val BASE_SERVER_URL:String="http://3.209.100.179:8080/api/";
 // Network Configuration
 val readTimeOut:Long = 0
 val connectTimeOut:Long = 10
+
+// Application configuaration
+val SPLASH_DELAY:Long=2000

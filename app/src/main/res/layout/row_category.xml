@@ -26,7 +26,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
                                                            android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.AppCompatImageView android:layout_width="70dp" android:layout_height="70dp"
+            <androidx.appcompat.widget.AppCompatImageView android:layout_width="60dp" android:layout_height="60dp"
                                                           android:id="@+id/row_category_thumbnail_image_view"
                                                           app:layout_constraintStart_toStartOf="parent"
                                                           android:layout_marginStart="8dp"

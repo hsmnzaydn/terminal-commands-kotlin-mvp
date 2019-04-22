@@ -12,6 +12,9 @@
                 android:id="@+id/nav_gallery"
                 android:icon="@drawable/ic_share_black_24dp"
                 android:title="@string/nav_menu_share_commands"/>
+        <item android:id="@+id/nav_download"
+              android:icon="@drawable/ic_file_download_black_24dp"
+              android:title="@string/nav_menu_download_commands"/>
 
     </group>
 
