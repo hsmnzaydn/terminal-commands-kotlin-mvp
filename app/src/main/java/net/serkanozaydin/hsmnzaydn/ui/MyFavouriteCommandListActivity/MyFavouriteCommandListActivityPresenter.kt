@@ -8,12 +8,14 @@ import javax.inject.Inject
 
 class MyFavouriteCommandListActivityPresenter<V : MyFavouriteCommandListActivityMvpView>  constructor(dataManager: DataManager) :
     BasePresenter<V>(dataManager), MyFavouriteCommandListActivityMvpPresenter<V> {
+
+
     override fun getCommandList() {
         mvpView.showLoading()
         dataManager.getAllCommandFromDb(object : ServiceCallback<List<Command>>{
             override fun onSuccess(response: List<Command>?) {
                 mvpView.hideLoading()
-                mvpView.loadDataToList(response)
+                mvpView.loadDataToList(response!!.reversed())
             }
 
             override fun onError(errorCode: Int, errorMessage: String) {
@@ -22,4 +24,10 @@ class MyFavouriteCommandListActivityPresenter<V : MyFavouriteCommandListActivity
 
         })
     }
+
+    override fun saveCommand(item: Command) {
+        dataManager.updateCommandFromDb(item)
+        getCommandList()
+    }
+
 }

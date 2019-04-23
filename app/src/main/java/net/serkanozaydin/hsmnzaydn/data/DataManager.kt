@@ -17,4 +17,5 @@ interface DataManager {
     fun saveCommand(title:String,description:String)
     fun deleteCommandFromDb(id:Int,title: String,description: String)
     fun getAllCommandFromDb(callback: ServiceCallback<List<Command>>)
+    fun updateCommandFromDb(command: Command)
 }

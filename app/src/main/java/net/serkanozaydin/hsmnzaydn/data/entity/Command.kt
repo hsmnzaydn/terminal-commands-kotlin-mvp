@@ -7,13 +7,17 @@ import com.google.gson.annotations.SerializedName
 
 @Entity
 data class Command(
-    @PrimaryKey var uid:Int,
+
     @SerializedName("_id")
-    val id: String,
+    @ColumnInfo(name = "Command Id")
+    var id: String,
     @SerializedName("description")
     @ColumnInfo(name = "description")
-    val description: String,
+    var description: String,
     @ColumnInfo(name = "title")
     @SerializedName("title")
-    val title: String
-)
+    var title: String
+){
+    @PrimaryKey(autoGenerate = true)
+    var uid:Int = 0
+}

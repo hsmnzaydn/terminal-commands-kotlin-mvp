@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import net.serkanozaydin.hsmnzaydn.data.entity.Command
 
 
-@Database(entities = arrayOf(Command::class), version = 1)
+@Database(entities = arrayOf(Command::class), version = 2)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun userDao(): CommandDao
+    abstract fun commandDao(): CommandDao
 }

@@ -22,21 +22,30 @@ class CommandDbImp : CommandDb {
         this.db = Room.databaseBuilder(
             context,
             AppDatabase::class.java, "command"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
 
 
     override fun addCommand(command: Command) {
-        doAsync { db.userDao().insertAll(command) }
+        doAsync {
+            db.commandDao().insertAll(command)
+        }
     }
 
     override fun deleteCommand(command: Command) {
-        doAsync { db.userDao().delete(command) }
+        doAsync { db.commandDao().delete(command) }
     }
 
     override fun getAllCommands(callback: ServiceCallback<List<Command>>) {
-        doAsync { callback.onSuccess(db.userDao().getAllCommand()) }
+        doAsync { callback.onSuccess(
+            db.commandDao().getAllCommand())
+        }
     }
+
+    override fun updateCommand(command: Command) {
+        doAsync { db.commandDao().updateCommand(command.title,command.description,command.uid) }
+    }
+
 
 
 }

@@ -49,19 +49,21 @@ class DataManagerImp : DataManager {
     }
 
     override fun saveCommand(title: String, description: String) {
-        var command=Command(Random().nextInt(), id = "",description = description,title = title);
+        var command=Command( id = "",description = description,title = title);
         dbHelper.addCommand(command)
     }
 
     override fun deleteCommandFromDb(id:Int,title: String, description: String) {
-        var command=Command(id,id = "",description = description,title = title);
+        var command=Command(id = "",description = description,title = title);
         dbHelper.deleteCommand(command)
 
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun getAllCommandFromDb(callback: ServiceCallback<List<Command>>) {
         dbHelper.getAllCommands(callback)
+    }
+    override fun updateCommandFromDb(command: Command) {
+        dbHelper.updateCommand(command)
     }
 
 

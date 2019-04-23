@@ -6,6 +6,7 @@ import net.serkanozaydin.hsmnzaydn.data.entity.Command
 import javax.inject.Inject
 
 class DBServicesImp:DBServices {
+
     lateinit var commandDb:CommandDb
 
     @Inject
@@ -26,4 +27,9 @@ class DBServicesImp:DBServices {
     override fun getAllCommands(callback: ServiceCallback<List<Command>>) {
         commandDb.getAllCommands(callback)
     }
+
+    override fun updateCommand(command: Command) {
+        commandDb.updateCommand(command)
+    }
+
 }

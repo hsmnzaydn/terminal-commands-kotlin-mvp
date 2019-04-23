@@ -62,5 +62,9 @@ dependencies {
     //Picasso
     implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
 
+    //Debug DB
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
+
+
 
 }

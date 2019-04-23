@@ -16,8 +16,13 @@ interface CommandDao {
             "description LIKE :description LIMIT 1")
     fun findByName(title: String, description: String): Command
 
+
+    @Query("UPDATE command SET title=:title, description=:description WHERE uid= :uid")
+    fun updateCommand(title:String,description: String,uid:Int)
+
+
     @Insert
-    fun insertAll(vararg command: Command)
+    fun insertAll(vararg command: Command):List<Long>
 
     @Delete
     fun delete(command: Command)
