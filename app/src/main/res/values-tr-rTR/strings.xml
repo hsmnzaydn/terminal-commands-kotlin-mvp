@@ -27,4 +27,5 @@
         komutlara erişebileceksiniz. Emin misiniz?
     </string>
     <string name="information_downloaded_all_commands">Tüm komutlar başarıyla indirildi</string>
+    <string name="information_updated_your_command">Komutunuz başarıyla güncellendi</string>
 </resources>

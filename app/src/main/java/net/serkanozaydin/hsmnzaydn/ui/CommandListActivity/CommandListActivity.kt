@@ -43,6 +43,13 @@ class CommandListActivity : BaseActivity(), CommandListActivityMvpView {
         presenter.getCommandsOfCategory(categoryId)
 
         adapter= CommandRecylerviewAdapter(object : CommandRecylerviewAdapter.ItemListener{
+            override fun onEditClick(item: Command) {
+
+
+
+
+            }
+
             override fun onItemClick(item: Command) {
 
                 val dialogBuilder = AlertDialog.Builder(this@CommandListActivity)
@@ -67,7 +74,7 @@ class CommandListActivity : BaseActivity(), CommandListActivityMvpView {
 
             }
 
-        })
+        },false)
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)

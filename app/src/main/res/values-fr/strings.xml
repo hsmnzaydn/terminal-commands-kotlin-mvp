@@ -27,4 +27,5 @@
         pourrez accéder aux commandes lorsque votre connexion Internet sera fermée. Êtes-vous sûr?
     </string>
     <string name="information_downloaded_all_commands">Téléchargé avec succès toutes les commandes</string>
+    <string name="information_updated_your_command">Votre commande a été mise à jour avec succès</string>
 </resources>

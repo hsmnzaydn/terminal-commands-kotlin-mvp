@@ -1,5 +1,6 @@
 package net.serkanozaydin.hsmnzaydn.ui.MyFavouriteCommandListActivity
 
+import net.serkanozaydin.hsmnzaydn.R
 import net.serkanozaydin.hsmnzaydn.data.DataManager
 import net.serkanozaydin.hsmnzaydn.data.ServiceCallback
 import net.serkanozaydin.hsmnzaydn.data.entity.Command
@@ -27,6 +28,7 @@ class MyFavouriteCommandListActivityPresenter<V : MyFavouriteCommandListActivity
 
     override fun saveCommand(item: Command) {
         dataManager.updateCommandFromDb(item)
+        mvpView.showInformation(mvpView.getActivity().getString(R.string.information_updated_your_command))
         getCommandList()
     }
 

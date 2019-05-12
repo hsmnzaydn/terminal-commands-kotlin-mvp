@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 28
@@ -27,6 +28,8 @@ android {
 dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
     implementation 'com.google.android.material:material:1.0.0-beta01'
+    implementation 'com.google.firebase:firebase-crash:16.2.0'
+    implementation 'com.google.firebase:firebase-core:16.0.3'
     apply plugin: 'kotlin-kapt'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -64,7 +67,6 @@ dependencies {
 
     //Debug DB
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
-
 
 
 }

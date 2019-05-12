@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
@@ -42,7 +43,9 @@ class MyFavouriteCommandListActivity : BaseActivity(),MyFavouriteCommandListActi
 
 
         adapter= CommandRecylerviewAdapter(object : CommandRecylerviewAdapter.ItemListener{
-            override fun onItemClick(item: Command) {
+            override fun onEditClick(item: Command) {
+
+
                 val dialogBuilder = AlertDialog.Builder(this@MyFavouriteCommandListActivity)
                 val inflater = layoutInflater
                 val dialogView = inflater.inflate(R.layout.dialog_enter_command, null)
@@ -70,7 +73,27 @@ class MyFavouriteCommandListActivity : BaseActivity(),MyFavouriteCommandListActi
                 }
             }
 
-        })
+            override fun onItemClick(item: Command) {
+                val dialogBuilder = AlertDialog.Builder(this@MyFavouriteCommandListActivity)
+                val inflater = layoutInflater
+                val dialogView = inflater.inflate(R.layout.dialog_description_command, null)
+                dialogBuilder.setView(dialogView)
+                var commandTitle = dialogView.findViewById<TextView>(R.id.dialog_description_command_title_text_view)
+                var commandDescription =
+                    dialogView.findViewById<TextView>(R.id.dialog_description_command_description_text_view)
+
+                commandTitle.text=item.title
+                commandDescription.text=item.description
+
+
+                val alertDialog = dialogBuilder.create()
+                alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+                alertDialog.show()
+
+            }
+
+        },true)
     }
 
 
