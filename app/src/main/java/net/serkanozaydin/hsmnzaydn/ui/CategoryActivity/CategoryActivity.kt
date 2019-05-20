@@ -110,6 +110,10 @@ class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
         })
 
         commandAdapter = CommandRecylerviewAdapter(object : CommandRecylerviewAdapter.ItemListener {
+            override fun onEditClick(item: Command) {
+
+            }
+
             override fun onItemClick(item: Command) {
 
             }
