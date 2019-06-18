@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +20,8 @@ import net.serkanozaydin.hsmnzaydn.data.entity.Command
 import net.serkanozaydin.hsmnzaydn.ui.adapters.CommandRecylerviewAdapter
 import net.serkanozaydin.hsmnzaydn.ui.base.BaseActivity
 import javax.inject.Inject
+import net.serkanozaydin.hsmnzaydn.Utility.copyClipBoard
+
 
 class CommandListActivity : BaseActivity(), CommandListActivityMvpView {
 
@@ -63,7 +66,10 @@ class CommandListActivity : BaseActivity(), CommandListActivityMvpView {
                 commandTitle.text=item.title
                 commandDescription.text=item.description
 
+                var copyImageView=dialogView.findViewById<ImageView>(R.id.dialog_description_copy_image_view)
 
+                copyImageView.setOnClickListener {
+                }
                 val alertDialog = dialogBuilder.create()
                 alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 

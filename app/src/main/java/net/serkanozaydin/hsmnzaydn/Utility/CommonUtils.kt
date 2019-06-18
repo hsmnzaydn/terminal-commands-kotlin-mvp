@@ -14,8 +14,12 @@ import androidx.core.content.ContextCompat.startActivity
 import com.squareup.picasso.Callback
 import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
-import net.serkanozaydin.hsmnzaydn.R
 import java.io.File
+import android.R.attr.label
+import android.content.ClipData
+import androidx.core.content.ContextCompat.getSystemService
+import android.content.ClipboardManager
+import net.serkanozaydin.hsmnzaydn.R
 
 
 fun showLoadingDialog(context: Context): ProgressDialog {
@@ -69,4 +73,11 @@ fun getImage(imageView: ImageView, url: String) {
 fun changeActivity(activity: Activity,goClass:Class<Any>){
     var intent=Intent(activity,goClass)
     activity.startActivity(intent)
+}
+
+fun copyClipBoard(activity: Activity,title:String,description:String){
+    var text=title+"\n"+description
+    val clipboard = activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
+    val clip = ClipData.newPlainText("1", text)
+    clipboard!!.setPrimaryClip(clip)
 }

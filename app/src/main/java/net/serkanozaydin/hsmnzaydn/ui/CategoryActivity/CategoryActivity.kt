@@ -30,8 +30,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
-import com.google.firebase.FirebaseApp
-import com.google.firebase.crash.FirebaseCrash
+
 import net.serkanozaydin.hsmnzaydn.Utility.BUNDLE_CATEGORY_NAME
 import net.serkanozaydin.hsmnzaydn.data.entity.Command
 import net.serkanozaydin.hsmnzaydn.ui.MyFavouriteCommandListActivity.MyFavouriteCommandListActivity
@@ -56,8 +55,7 @@ class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation)
         setSupportActionBar(toolbar)
-        FirebaseApp.initializeApp(this)
-        FirebaseCrash.log("Activity created");
+
 
         fab.setOnClickListener { view ->
             val dialogBuilder = AlertDialog.Builder(this@CategoryActivity)

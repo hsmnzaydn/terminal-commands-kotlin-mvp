@@ -19,8 +19,8 @@ class SplashScreenActivity : BaseActivity(),SplashScreenActivityMvpView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
-
         (application as MvpApp).getActivityComponent()!!.injectSplashScreenActivity(this)
+
         presenter.onAttach(this)
 
         presenter.splashConfiguration()
