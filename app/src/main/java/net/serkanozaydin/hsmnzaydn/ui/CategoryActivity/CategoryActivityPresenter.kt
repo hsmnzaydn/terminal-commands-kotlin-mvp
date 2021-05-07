@@ -47,9 +47,11 @@ class CategoryActivityPresenter<V : CategoryActivityMvpView> constructor(dataMan
         mvpView.showLoading()
         dataManager.getCategories(object : ServiceCallback<List<Category>> {
             override fun onSuccess(response: List<Category>?) {
-                categoryList= response!!;
-                mvpView.loadDataToList(response)
-                mvpView.hideLoading()
+                response?.let {
+                    mvpView.loadDataToList(it)
+                    mvpView.hideLoading()
+                }
+
             }
 
             override fun onError(errorCode: Int, errorMessage: String) {
