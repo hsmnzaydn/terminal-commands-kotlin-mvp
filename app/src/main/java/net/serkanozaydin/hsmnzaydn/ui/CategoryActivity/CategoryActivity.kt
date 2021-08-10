@@ -91,9 +91,6 @@ class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
         (application as MvpApp).getActivityComponent()!!.injectMainActivity(this)
 
         presenter.onAttach(this)
-        presenter.getCategories()
-
-
         adapter = CategoryRecylerviewAdapter(object : CategoryRecylerviewAdapter.ItemListener {
             override fun onItemClick(item: Category) {
                 changeClass = Intent(this@CategoryActivity, CommandListActivity::class.java)
@@ -103,6 +100,9 @@ class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
             }
 
         })
+
+
+
 
         commandAdapter = CommandRecylerviewAdapter(object : CommandRecylerviewAdapter.ItemListener {
             override fun onEditClick(item: Command) {
@@ -114,6 +114,7 @@ class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
             }
 
         },false)
+        presenter.getCategories()
 
 
     }

@@ -30,8 +30,8 @@ class DataModules {
 
     @Provides
     @Singleton
-    fun provideDataManager(apiServices: ApiServices,prefHelper: PrefHelper,db: DBServices): DataManager {
-       return DataManagerImp(apiServices,prefHelper,db)
+    fun provideDataManager(context: Context,apiServices: ApiServices,prefHelper: PrefHelper,db: DBServices): DataManager {
+       return DataManagerImp(context,apiServices,prefHelper,db)
     }
 
     @Provides

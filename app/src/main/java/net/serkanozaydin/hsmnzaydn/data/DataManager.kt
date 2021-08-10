@@ -18,4 +18,10 @@ interface DataManager {
     fun updateCommandFromDb(command: Command)
     fun registerUser(userRegisterRequest: UserRegisterRequest, callback: ServiceCallback<UserRegisterResponse>)
 
+
+    fun saveAllCategories(list:List<Category>)
+    fun saveAllCommands(list: List<Command>)
+
+    fun getCategoriesFromCache():List<Category>
+    fun getCommandsFromsCache(categoryId: String):List<Command>
 }

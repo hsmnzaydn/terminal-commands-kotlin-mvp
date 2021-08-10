@@ -16,7 +16,8 @@ data class Command(
     var description: String,
     @ColumnInfo(name = "title")
     @SerializedName("title")
-    var title: String
+    var title: String,
+    var categoryId:String? = ""
 ){
     @PrimaryKey(autoGenerate = true)
     var uid:Int = 0
