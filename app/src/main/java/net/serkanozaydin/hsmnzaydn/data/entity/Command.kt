@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 @Entity
 data class Command(
 
-    @SerializedName("_id")
+    @SerializedName("id")
     @ColumnInfo(name = "Command Id")
     var id: String,
     @SerializedName("description")

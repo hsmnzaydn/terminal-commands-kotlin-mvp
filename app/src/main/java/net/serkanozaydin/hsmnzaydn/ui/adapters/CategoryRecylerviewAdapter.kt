@@ -57,8 +57,6 @@ class CategoryRecylerviewAdapter( private var myListener: ItemListener?) :
         fun setData(item: Category) {
             this.item = item
             itemView.findViewById<TextView>(R.id.row_category_title_text_view).text=item.title
-            var categoryImage=itemView.findViewById<AppCompatImageView>(R.id.row_category_thumbnail_image_view)
-            getImageWithCache(categoryImage,item.iconPath)
             // TODO set data to view
         }
 

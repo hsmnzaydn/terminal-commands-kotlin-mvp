@@ -1,7 +1,8 @@
 package net.serkanozaydin.hsmnzaydn.data.services.CommandServices
 
-import net.serkanozaydin.hsmnzaydn.data.ServiceCallback
 import net.serkanozaydin.hsmnzaydn.data.entity.Command
+import net.serkanozaydin.hsmnzaydn.data.ServiceCallback
+import net.serkanozaydin.hsmnzaydn.data.services.CoreBaseResponse
 import net.serkanozaydin.hsmnzaydn.data.services.RetrofitClient
 import net.serkanozaydin.hsmnzaydn.data.services.Services
 import retrofit2.Call
@@ -23,17 +24,21 @@ class CommandServicesImp:CommandServices {
 
     override fun getCommandQuery(query: String, serviceCallback: ServiceCallback<List<Command>>) {
         var call=apiServices.getCommands(query)
-        call.enqueue(object : retrofit2.Callback<List<Command>>{
-            override fun onFailure(call: Call<List<Command>>, t: Throwable) {
+        call.enqueue(object : retrofit2.Callback<CoreBaseResponse<List<Command>>> {
 
-                serviceCallback.onError(500,t.message.toString())
+            override fun onFailure(p0: Call<CoreBaseResponse<List<Command>>>, p1: Throwable) {
+                serviceCallback.onError(500,p1.localizedMessage)
             }
 
-            override fun onResponse(call: Call<List<Command>>, response: Response<List<Command>>) {
-                serviceCallback.onSuccess(response.body())
+            override fun onResponse(
+                p0: Call<CoreBaseResponse<List<Command>>>,
+                p1: Response<CoreBaseResponse<List<Command>>>
+            ) {
+                serviceCallback.onSuccess(p1.body()?.data)
             }
 
         })
+
 
 
     }

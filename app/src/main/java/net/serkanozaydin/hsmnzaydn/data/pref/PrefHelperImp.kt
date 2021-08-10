@@ -29,8 +29,16 @@ class PrefHelperImp:PrefHelper {
                 language="ENG"
             }
         }
-        return mPrefs.getString("LANGUAGE",language)
+        return mPrefs.getString("LANGUAGE",language)!!
 
+    }
+
+    override fun saveAuthorizationKey(authorizationKey: String) {
+        mPrefs.edit().putString("Authorization",authorizationKey).apply()
+    }
+
+    override fun getAuthorizationKey(): String {
+        return mPrefs.getString("Authorization","")?:""
     }
 
 }

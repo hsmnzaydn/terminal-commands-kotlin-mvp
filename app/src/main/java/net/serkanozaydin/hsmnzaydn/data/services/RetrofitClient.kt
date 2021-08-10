@@ -12,6 +12,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+import okhttp3.logging.HttpLoggingInterceptor
+import java.io.File
+
 
 class RetrofitClient {
     lateinit var context: Context
@@ -24,11 +27,12 @@ class RetrofitClient {
     }
 
     fun getClient(): Retrofit {
-
+        val file = File(context.cacheDir,"responses")
         val cacheSize = 10 * 1024 * 1024
-        val cache = Cache(context.cacheDir, cacheSize.toLong())
+        val cache = Cache(file, cacheSize.toLong())
 
-
+        val loggingInterceptor = HttpLoggingInterceptor()
+        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         val okHttpClient = OkHttpClient.Builder()
             .readTimeout(readTimeOut, TimeUnit.SECONDS)
             .connectTimeout(connectTimeOut, TimeUnit.SECONDS)
@@ -37,7 +41,8 @@ class RetrofitClient {
                 override fun intercept(chain: Interceptor.Chain): Response {
 
                     var request: Request =
-                        chain.request().newBuilder().addHeader("app-language", prefHelper.getLanguage()).build()
+                        chain.request().newBuilder().addHeader("app-language", prefHelper.getLanguage())
+                            .addHeader("Authorization","Bearer ${prefHelper.getAuthorizationKey()}").build()
                     if (!hasNetwork(context)!!) {
                         val maxStale = 60 * 60 * 24 * 28
                         return chain.proceed(chain.request().newBuilder()
@@ -49,6 +54,8 @@ class RetrofitClient {
                 }
 
             })
+            .addInterceptor(loggingInterceptor)
+
             .build()
 
 
@@ -56,6 +63,8 @@ class RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create()).build()
 
     }
+
+
 
     fun hasNetwork(context: Context): Boolean? {
         var isConnected: Boolean? = false // Initial Value

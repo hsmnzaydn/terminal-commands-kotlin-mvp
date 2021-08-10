@@ -1,8 +1,7 @@
 package net.serkanozaydin.hsmnzaydn.data.services.LanguageServices
 
-import net.serkanozaydin.hsmnzaydn.data.ServiceCallback
 import net.serkanozaydin.hsmnzaydn.data.entity.Language
-import javax.security.auth.callback.Callback
+import net.serkanozaydin.hsmnzaydn.data.ServiceCallback
 
 interface LanguageServices {
 

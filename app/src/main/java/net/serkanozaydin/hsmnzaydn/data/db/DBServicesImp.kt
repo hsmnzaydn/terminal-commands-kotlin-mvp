@@ -1,8 +1,8 @@
 package net.serkanozaydin.hsmnzaydn.data.db
 
+import net.serkanozaydin.hsmnzaydn.data.entity.Command
 import net.serkanozaydin.hsmnzaydn.data.ServiceCallback
 import net.serkanozaydin.hsmnzaydn.data.db.Command.CommandDb
-import net.serkanozaydin.hsmnzaydn.data.entity.Command
 import javax.inject.Inject
 
 class DBServicesImp:DBServices {

@@ -1,6 +1,5 @@
 package net.serkanozaydin.hsmnzaydn.data.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class WritableTable {

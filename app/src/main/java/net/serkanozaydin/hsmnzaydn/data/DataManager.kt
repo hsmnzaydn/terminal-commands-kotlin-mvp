@@ -1,8 +1,6 @@
 package net.serkanozaydin.hsmnzaydn.data
 
-import net.serkanozaydin.hsmnzaydn.data.entity.Category
-import net.serkanozaydin.hsmnzaydn.data.entity.Command
-import net.serkanozaydin.hsmnzaydn.data.entity.Language
+import net.serkanozaydin.hsmnzaydn.data.entity.*
 
 interface DataManager {
 
@@ -18,4 +16,6 @@ interface DataManager {
     fun deleteCommandFromDb(id:Int,title: String,description: String)
     fun getAllCommandFromDb(callback: ServiceCallback<List<Command>>)
     fun updateCommandFromDb(command: Command)
+    fun registerUser(userRegisterRequest: UserRegisterRequest, callback: ServiceCallback<UserRegisterResponse>)
+
 }

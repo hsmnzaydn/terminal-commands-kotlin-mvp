@@ -1,13 +1,9 @@
 package net.serkanozaydin.hsmnzaydn.data
 
 import net.serkanozaydin.hsmnzaydn.data.db.DBServices
-import net.serkanozaydin.hsmnzaydn.data.db.DBServicesImp
-import net.serkanozaydin.hsmnzaydn.data.entity.Category
-import net.serkanozaydin.hsmnzaydn.data.entity.Command
-import net.serkanozaydin.hsmnzaydn.data.entity.Language
+import net.serkanozaydin.hsmnzaydn.data.entity.*
 import net.serkanozaydin.hsmnzaydn.data.pref.PrefHelper
 import net.serkanozaydin.hsmnzaydn.data.services.ApiServices
-import java.util.*
 import javax.inject.Inject
 
 class DataManagerImp : DataManager {
@@ -49,12 +45,12 @@ class DataManagerImp : DataManager {
     }
 
     override fun saveCommand(title: String, description: String) {
-        var command=Command( id = "",description = description,title = title);
+        var command= Command( id = "",description = description,title = title);
         dbHelper.addCommand(command)
     }
 
     override fun deleteCommandFromDb(id:Int,title: String, description: String) {
-        var command=Command(id = "",description = description,title = title);
+        var command= Command(id = "",description = description,title = title);
         dbHelper.deleteCommand(command)
 
     }
@@ -66,5 +62,25 @@ class DataManagerImp : DataManager {
         dbHelper.updateCommand(command)
     }
 
+    override fun registerUser(
+        userRegisterRequest: UserRegisterRequest,
+        callback: ServiceCallback<UserRegisterResponse>
+    ) {
+        apiServices.userRegister(userRegisterRequest, object :ServiceCallback<UserRegisterResponse>{
+            override fun onSuccess(response: UserRegisterResponse?) {
+                if (response != null){
+                    prefHelper.saveAuthorizationKey(response.authozationKey)
+                }else{
+                    prefHelper.saveAuthorizationKey("Authorization")
+                }
+                callback.onSuccess(response)
+            }
+
+            override fun onError(errorCode: Int, errorMessage: String) {
+                callback.onError(errorCode, errorMessage)
+            }
+
+        })
+    }
 
 }

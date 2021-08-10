@@ -2,40 +2,37 @@ package net.serkanozaydin.hsmnzaydn.ui.CategoryActivity
 
 import android.app.AlertDialog
 import android.app.SearchManager
+import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import com.google.android.material.navigation.NavigationView
-import androidx.core.view.GravityCompat
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.recyclerview.widget.LinearLayoutManager
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.LinearLayout
 import android.widget.SearchView
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.activity_navigation.*
 import kotlinx.android.synthetic.main.app_bar_navigation.*
 import kotlinx.android.synthetic.main.content_navigation.*
 import net.serkanozaydin.hsmnzaydn.MvpApp
-import net.serkanozaydin.hsmnzaydn.Utility.BUNDLE_CATEGORY_ID
-import net.serkanozaydin.hsmnzaydn.data.entity.Category
-import net.serkanozaydin.hsmnzaydn.ui.CommandListActivity.CommandListActivity
-import net.serkanozaydin.hsmnzaydn.ui.adapters.CategoryRecylerviewAdapter
-import net.serkanozaydin.hsmnzaydn.ui.base.BaseActivity
-import javax.inject.Inject
 import net.serkanozaydin.hsmnzaydn.R
-
-import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.textfield.TextInputEditText
-
+import net.serkanozaydin.hsmnzaydn.Utility.BUNDLE_CATEGORY_ID
 import net.serkanozaydin.hsmnzaydn.Utility.BUNDLE_CATEGORY_NAME
+import net.serkanozaydin.hsmnzaydn.data.entity.Category
 import net.serkanozaydin.hsmnzaydn.data.entity.Command
+import net.serkanozaydin.hsmnzaydn.ui.CommandListActivity.CommandListActivity
 import net.serkanozaydin.hsmnzaydn.ui.MyFavouriteCommandListActivity.MyFavouriteCommandListActivity
 import net.serkanozaydin.hsmnzaydn.ui.ShareCommandsActivity.ShareCommandsActivity
+import net.serkanozaydin.hsmnzaydn.ui.adapters.CategoryRecylerviewAdapter
 import net.serkanozaydin.hsmnzaydn.ui.adapters.CommandRecylerviewAdapter
+import net.serkanozaydin.hsmnzaydn.ui.base.BaseActivity
+import javax.inject.Inject
 
 
 class CategoryActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener, CategoryActivityMvpView,

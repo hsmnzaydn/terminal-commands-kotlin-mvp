@@ -4,6 +4,8 @@ import android.content.Context
 
 import dagger.Module
 import dagger.Provides
+import hsmnzaydn.serkanozaydin.net.data.services.UserServices.UserServices
+import hsmnzaydn.serkanozaydin.net.data.services.UserServices.UserServicesImp
 import net.serkanozaydin.hsmnzaydn.data.*
 import net.serkanozaydin.hsmnzaydn.data.db.Command.CommandDb
 import net.serkanozaydin.hsmnzaydn.data.db.Command.CommandDbImp
@@ -40,8 +42,15 @@ class DataModules {
 
     @Provides
     @Singleton
-    fun provideApiServices(categoryServices: CategoryServices, commandServices: CommandServices,languageServices: LanguageServices): ApiServices {
-        return ApiServicesImp(categoryServices, commandServices,languageServices);
+    fun provideApiServices(categoryServices: CategoryServices, commandServices: CommandServices, languageServices: LanguageServices,userServices: UserServices): ApiServices {
+        return ApiServicesImp(categoryServices, commandServices,languageServices,userServices);
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideUserServices(retrofitClient: RetrofitClient): UserServices {
+        return UserServicesImp(retrofitClient)
     }
 
     @Provides

@@ -17,7 +17,7 @@ class CategoryActivityPresenter<V : CategoryActivityMvpView> constructor(dataMan
 
     var commandList: List<Command> = ArrayList<Command>()
     var selectLanguageId:Int = 0
-    var categoryList:List<Category> = ArrayList<Category>()
+    lateinit var categoryList:List<Category>
 
     override fun searchInCommands(newText: String) {
         mvpView.showLoading()
@@ -47,10 +47,10 @@ class CategoryActivityPresenter<V : CategoryActivityMvpView> constructor(dataMan
         mvpView.showLoading()
         dataManager.getCategories(object : ServiceCallback<List<Category>> {
             override fun onSuccess(response: List<Category>?) {
-                response?.let {
-                    mvpView.loadDataToList(it)
-                    mvpView.hideLoading()
-                }
+                categoryList = response!!
+                mvpView.loadDataToList(response)
+                mvpView.hideLoading()
+
 
             }
 
@@ -112,25 +112,40 @@ class CategoryActivityPresenter<V : CategoryActivityMvpView> constructor(dataMan
             DialogCallback{
             override fun pressedPossitiveButton() {
                 mvpView.showLoading()
+                dataManager.getCategories(object : ServiceCallback<List<Category>> {
+                    override fun onSuccess(categoryResponse: List<Category>?) {
+                        for(i:Int in categoryResponse!!.indices) {
+                            dataManager.getCommandsOfCategory(categoryResponse[i].id,object : ServiceCallback<List<Command>>{
+                                override fun onSuccess(response: List<Command>?) {
+                                    if (i == categoryResponse!!.size - 1) {
+                                        mvpView.hideLoading()
+                                        mvpView.showInformation(
+                                            mvpView.getActivity()
+                                                .getString(R.string.information_downloaded_all_commands)
+                                        )
+                                    }
+                                }
 
-                for(i:Int in categoryList.indices){
-                    dataManager.getCommandsOfCategory(categoryList.get(i).id,object : ServiceCallback<List<Command>>{
-                        override fun onSuccess(response: List<Command>?) {
+                                override fun onError(errorCode: Int, errorMessage: String) {
 
-                            if(i == categoryList.size-1){
-                                mvpView.hideLoading()
-                                mvpView.showInformation(mvpView.getActivity().getString(R.string.information_downloaded_all_commands))
-                            }
+                                    mvpView.showError(errorMessage)
+                                    mvpView.hideLoading()
+                                }
+
+                            })
+
+
+
                         }
+                    }
 
-                        override fun onError(errorCode: Int, errorMessage: String) {
-                            mvpView.showError(errorMessage)
-                            mvpView.hideLoading()
-                        }
+                    override fun onError(errorCode: Int, errorMessage: String) {
+                        mvpView.showError(errorMessage)
+                        mvpView.hideLoading()
+                    }
 
-                    })
+                })
 
-                }
             }
 
             override fun pressedNegativeButton() {

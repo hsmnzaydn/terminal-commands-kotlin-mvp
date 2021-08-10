@@ -7,7 +7,7 @@ data class Category(
     val iconPath:String,
     @SerializedName("__v")
     val v: Int,
-    @SerializedName("_id")
+    @SerializedName("id")
     val id: String,
     @SerializedName("language")
     val language: String,
